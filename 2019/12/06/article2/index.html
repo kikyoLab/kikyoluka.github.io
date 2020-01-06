@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="ZH-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="author" content="琉花"><meta name="copyright" content="琉花"><meta name="og:image" content="/images/avatar.jpg"><meta name="og:type" content="website"><meta name="og:site_name" content="琉花"><meta name="og:url" content="kikyoluka.cn"><meta name="og：title" content="琉花"><meta name="theme-color" content="#b854d4" /><title>琉花</title><link rel="shortcut icon" href="/images/favicon.jpg" type="image/x-icon"><link rel="stylesheet" href="/css/index.css?version=2.0.0"><link rel="stylesheet" href="/font/fontello.css?version=2.0.0"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Mono|Noto+Serif+SC&amp;amp;display=swap"><link rel="canonical" href="//kikyoluka.cn"><link rel="dns-prefetch" href="//cdn.jsdelivr.net"><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><script src="/lib/gitalk/gitalk.min.js"></script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="layout"><header><div class="header"><div class="mobile-bg" style="background-image:url(/images/mobile.png);"></div><h1 class="title">琉花</h1><h2 class="subtitle">行至朝雾里 坠入暮云间</h2><nav class="menu"><a class="menu-item pjax-main-link" href="/"><li><i class="icon-index"></i><span>首页</span></li></a><a class="menu-item pjax-main-link" href="/archives/"><li><i class="icon-archives"></i><span>归档</span></li></a><a class="menu-item pjax-main-link" href="/categories/"><li><i class="icon-categories"></i><span>分类</span></li></a><a class="menu-item pjax-main-link" href="/tags/"><li><i class="icon-tags"></i><span>标签</span></li></a><a class="menu-item pjax-main-link" href="/books/"><li><i class="icon-books"></i><span>书单</span></li></a><a class="menu-item pjax-main-link" href="/inspirations/"><li><i class="icon-inspiration"></i><span>灵感</span></li></a><a class="menu-item pjax-main-link" href="/friends/"><li><i class="icon-friends"></i><span>友链</span></li></a><a class="menu-item pjax-main-link" href="/about/"><li><i class="icon-about"></i><span>关于</span></li></a></nav></div></header><main><div class="main-wrapper"></div><div class="pjax-main-page"><div class="post"><article class="post-article"><div class="post-header"><img class="default-image" src="/images/postDefaultImage%20.png" style="opacity:0;"/><img class="post-image" src="https://raw.githubusercontent.com/chanshiyucx/yoi/master/bg/3.jpg"/><div class="post-head"><div class="post-title-wrapper"><h1 class="post-title">前端面试题的整理-HTML部分</h1><span class="post-image-source">pixiv</span></div><div class="post-meta"><span class="post-date"><i class="icon-calendar"></i><span class="date timeago" datetime="2019-12-06T02:10:10.000Z"></span></span><span class="post-hot"><i class="icon-fire"></i><span class="leancloud_visitors" id="/2019/12/06/article2/" data-flag-title="前端面试题的整理-HTML部分">热度<span class="leancloud-visitors-count">0</span>℃</span></span><span class="post-tags"><i class="icon-tag"></i><span class="tag">面试知识</span></span><span class="post-categories"><i class="icon-bookmark-empty"></i><span class="category">文章</span></span></div></div></div><div class="post-content"><div class="markdown"><h1 id="doctype-文档类型-的作用是什么？"><a href="#doctype-文档类型-的作用是什么？" class="headerlink" title="doctype(文档类型) 的作用是什么？"></a>doctype(文档类型) 的作用是什么？</h1><p>  1.对文档进行有效性验证<br>    它告诉用户代理和校验器这个文档是按照什么DTD 写的。这个动作是被动的，每次页面加载时，浏览器并不会下载DTD 并检查合法性，只有当手动校验页面时才启用.</p>
+<p>  2.决定浏览器的呈现模式<br>    告诉浏览器应该以什么样的文档类型定义来解析文档，如果没有写，则浏览器则根据自身的规则对代码进行解析，可能会严重影响HTML 排版布局.</p>
+<p>  3.浏览器有三种方式解析HTML文档<br>    Standards(标准)模式：遵循最新标准<br>    Quirks（怪癖/兼容）模式：帮助处理所有奇怪的渲染和非浏览器兼容及不符合标准的网页<br>    Almost Standards（近似标准）模式：针对标准的某个老版本设计的网页</p>
+<pre><code>如果DOCTYPE不存在或格式不正确会导致文档以怪异模式呈现</code></pre><h1 id="浏览器标准模式-standards-mode-、几乎标准模式（almost-standards-mode）和怪异模式-quirks-mode-之间的区别是什么？"><a href="#浏览器标准模式-standards-mode-、几乎标准模式（almost-standards-mode）和怪异模式-quirks-mode-之间的区别是什么？" class="headerlink" title="浏览器标准模式 (standards mode) 、几乎标准模式（almost standards mode）和怪异模式 (quirks mode) 之间的区别是什么？"></a>浏览器标准模式 (standards mode) 、几乎标准模式（almost standards mode）和怪异模式 (quirks mode) 之间的区别是什么？</h1><p>almost standards mode 和 Standards Mode 几乎一致，唯一的区别就在于某些情况下 Almost Standards Mode 会采用与 Quirks 相同的方式来绘制页面.</p>
+<p>标准模式和怪异模式的区别在于：</p>
+<ol>
+<li><p>盒模型：</p>
+<p>在怪异模式下，盒模型为IE盒模型而非标准模式下的W3C 盒模型：在 IE 盒模型中，<br>box width = content width + padding left + padding right + border left + border right<br>box height = content height + padding top + padding bottom + border top + border bottom<br>而在 W3C 标准的盒模型中，box 的大小就是 content 的大小。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>图片元素的垂直对齐方式</p>
+<p>对于<code>inline</code>元素和<code>table-cell</code>元素，在 IE Standards Mode 下 vertical-align 属性默认取值为<code>baseline</code>。而当<code>inline</code>元素的内容只有图片时，如<code>table</code>的单元格<code>table-cell</code>。在 IE Quirks Mode 下，<code>table</code>单元格中的图片的 <code>vertical-align</code> 属性默认为<code>bottom</code>，因此，在图片底部会有几像素的空间。</p>
+</li>
+</ol>
+<ol start="3">
+<li>元素中的字体</li>
+</ol>
+<ol start="4">
+<li><p>内联元素的尺寸</p>
+<p>在 IE Standards Mode 下，non-replaced inline 元素无法自定义大小，而在 IE Quirks Mode 下，定义这些元素的<code>width</code>和<code>height</code> 属性，能够影响该元素显示的大小尺寸。</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>元素的百分比高度:</p>
+<p>CSS 中对于元素的百分比高度规定如下，百分比为元素包含块的高度，不可为负值。如果包含块的高度没有显式给出，该值等同于“auto”（即取决于内容的高度）。所以百分比的高度必须在父元素有声明高度时使用.当一个元素使用百分比高度时，在 IE Standards Mode 下，高度取决于内容的变化，而在 Quirks Mode 下，百分比高度则被正确应用</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>元素溢出的处理：</p>
+<p>在 IE Standard Mode 下，<code>overflow</code>取默认值 <code>visible</code>，即溢出可见，这种情况下，溢出内容不会被裁剪，呈现在元素框外。而在 Quirks Mode 下，该溢出被当做扩展<code>box</code>来对待，即元素的大小由其内容决定，溢出不会被裁剪，元素框自动调整，包含溢出内容</p>
+</li>
+</ol>
+<h1 id="HTML-和-XHTML-有什么区别？"><a href="#HTML-和-XHTML-有什么区别？" class="headerlink" title="HTML 和 XHTML 有什么区别？"></a>HTML 和 XHTML 有什么区别？</h1><p>xhtml 语法要求严格，一旦遇到错误，立刻停止解析，并显示错误信息，如下：</p>
+<ol>
+<li>必须包含一个文件头声明 &lt;!DOCTYPE&gt;</li>
+<li>所有元素名必须小写</li>
+<li>所有空元素必须关闭</li>
+<li>所有属性名必须小写</li>
+<li>所有属性值必须加引号</li>
+<li>所有布尔值属性必须加上属性值</li>
+</ol>
+<h1 id="如果页面使用-‘application-xhtml-xml’-会有什么问题吗？"><a href="#如果页面使用-‘application-xhtml-xml’-会有什么问题吗？" class="headerlink" title="如果页面使用 ‘application/xhtml+xml’ 会有什么问题吗？"></a>如果页面使用 ‘application/xhtml+xml’ 会有什么问题吗？</h1><p>如果页面使用’application/xhtml+xml’会导致一些旧的浏览器版本出错，IE8以下不支持XML</p>
+<h1 id="如果网页内容需要支持多语言，你会怎么做？"><a href="#如果网页内容需要支持多语言，你会怎么做？" class="headerlink" title="如果网页内容需要支持多语言，你会怎么做？"></a>如果网页内容需要支持多语言，你会怎么做？</h1><p>编码使用UTF-8，空间域名需要支持多浏览地址,准备多套模板，然后使用 window.navigator.language 这个变量获取系统的语言设定，然后选择模板</p>
+<h1 id="在设计和开发多语言网站时，有哪些问题你必须要考虑？"><a href="#在设计和开发多语言网站时，有哪些问题你必须要考虑？" class="headerlink" title="在设计和开发多语言网站时，有哪些问题你必须要考虑？"></a>在设计和开发多语言网站时，有哪些问题你必须要考虑？</h1><ul>
+<li>应用字符集的选择</li>
+<li>语言书写习惯&amp;导航结构</li>
+<li>数据库驱动型网站</li>
+<li>css 盒子会因为内容尺寸不一样出现不对齐偏移</li>
+</ul>
+<h1 id="使用-data-属性的好处是什么？"><a href="#使用-data-属性的好处是什么？" class="headerlink" title="使用 data- 属性的好处是什么？"></a>使用 <code>data-</code> 属性的好处是什么？</h1><p><code>data-</code>为前端开发者提供自定义的属性，这些属性集可以通过对象的<code>dataset</code>属性获取，不支持该属性的浏览器可以通过<code>getAttribute</code>方法获取，<code>data-</code>之后的以连字符分割的多个单词组成的属性，获取的时候使用驼峰风格，当没有合适的属性和元素时，自定义的 data 属性是能够存储页面或 App 的私有的自定义数据</p>
+<pre><code> &lt;div data-author=&quot;david&quot; data-time=&quot;2011-06-20&quot; data-comment-num=&quot;10&quot;&gt;...&lt;/div&gt;
+
+ div.dataset.commentNum; // 10</code></pre><p>并不是所有的浏览器都支持.dataset属性，测试的浏览器中只有Chrome 和Opera 支持</p>
+<h1 id="如果把-HTML5-看作做一个开放平台，那它的构建模块有哪些？"><a href="#如果把-HTML5-看作做一个开放平台，那它的构建模块有哪些？" class="headerlink" title="如果把 HTML5 看作做一个开放平台，那它的构建模块有哪些？"></a>如果把 HTML5 看作做一个开放平台，那它的构建模块有哪些？</h1><ul>
+<li>HTML</li>
+<li>DOM</li>
+<li>CSS</li>
+<li>SVG</li>
+<li>MathML</li>
+<li>Web APIs<ul>
+<li>Canvas </li>
+<li>Audio</li>
+<li>Web Storage</li>
+<li>File, File System</li>
+<li>History, contentEditable, Drag &amp; Drop, HTML Editing Commands</li>
+<li>Web Sockets</li>
+<li>Web Workers</li>
+<li>Server-Send Events</li>
+<li>XMLHttpRequest</li>
+<li>Geolocation, Device Orientation</li>
+<li>DOM Events, Touch Events, Progress Events</li>
+<li>Custom application development</li>
+<li>Clipboard and events</li>
+<li>Web Notifications, Web Messaging</li>
+<li>Offine Web Applications</li>
+<li>Media Capture API</li>
+<li>Timing control for script-based animations, Page Visibility, Navigation + Timing, Resource Timing</li>
+<li>Selectors</li>
+<li>DOM Traversal, DOM XPath, Element Traversal</li>
+<li>EcmaScript / JavaScript</li>
+<li>HTTP</li>
+<li>URI</li>
+<li>Media Accessibility Checklist</li>
+</ul>
+</li>
+</ul>
+<h1 id="请描述cookies、sessionStorage-和-localStorage的区别"><a href="#请描述cookies、sessionStorage-和-localStorage的区别" class="headerlink" title="请描述cookies、sessionStorage 和 localStorage的区别"></a>请描述cookies、sessionStorage 和 localStorage的区别</h1><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Cookie</th>
+<th>localStorage / sessionStorage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据的生命期</td>
+<td>一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效</td>
+<td>除非被清除，否则永久保存 <strong>/</strong> 仅在当前会话下有效，关闭页面或浏览器后被清除</td>
+</tr>
+<tr>
+<td>存放数据大</td>
+<td>4K左右</td>
+<td>一般为5MB</td>
+</tr>
+<tr>
+<td>与服务器通信</td>
+<td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
+<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+</tr>
+<tr>
+<td>易用性</td>
+<td>需要程序员自己封装，源生的Cookie接口不友好</td>
+<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+</tr>
+</tbody></table>
+<p>此外cookies会发送到服务器端，其余两个不会</p>
+<ul>
+<li>Cookie<ul>
+<li>每个域名存储量比较小（各浏览器不同，大致4K）</li>
+<li>所有域名的存储量有限制（各浏览器不同，大致4K）</li>
+<li>有个数限制（各浏览器不同）</li>
+<li>会随请求发送到服务器</li>
+</ul>
+</li>
+<li>LocalStorage<ul>
+<li>永久存储</li>
+<li>单个域名存储量比较大（推荐5MB，各浏览器不同）</li>
+<li>总体数量无限制</li>
+</ul>
+</li>
+<li>SessionStorage<ul>
+<li>只在 Session 内有效</li>
+<li>存储量更大（推荐没有限制，但是实际上各浏览器也不同）</li>
+</ul>
+</li>
+</ul>
+<h1 id="请解释-script、script-async-和-script-defer的区别"><a href="#请解释-script、script-async-和-script-defer的区别" class="headerlink" title="请解释 script、script async 和 script defer的区别"></a>请解释 script、script async 和 script defer的区别</h1><p><img src="https://user-gold-cdn.xitu.io/2018/2/7/1616fd1a181ab854?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<p>1.defer，我们可以认为是将外链的js放在了页面底部。js的加载不会阻塞页面的渲染和资源的加载。不过defer会按照原本的js的顺序执行，所以如果前后有依赖关系的js可以放心使用</p>
+<p>2.async和defer一样，会等待的资源不会阻塞其余资源的加载，也不会影响页面的加载。但是有一点需要注意下，在有async的情况下，js一旦下载好了就会执行，所以很有可能不是按照原本的顺序来执行的。如果js前后有依赖性，用async，就很有可能出错</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>相同点：</p>
+<ul>
+<li>加载文件时不阻塞页面渲染</li>
+<li>对于inline的script无效</li>
+<li>使用这两个属性的脚本中不能调用document.write方法</li>
+<li>有脚本的onload的事件回调</li>
+</ul>
+<p>区别点：</p>
+<ul>
+<li>html4.0中定义了defer；html5.0中定义了async</li>
+<li>浏览器支持不同</li>
+<li>每一个async属性的脚本都在它下载结束之后立刻执行，同时会在window的load事件之前执行。所以就有可能出现脚本执行顺序被打乱的情况；每一个defer属性的脚本都是在页面解析完毕之后，按照原本的顺序执行，同时会在document的DOMContentLoaded之前执行。</li>
+</ul>
+<p>简单的来说，使用这两个属性会有三种可能的情况</p>
+<ul>
+<li>如果async为true，那么脚本在下载完成后异步执行。</li>
+<li>如果async为false，defer为true，那么脚本会在页面解析完毕之后执行。</li>
+<li>如果async和defer都为false，那么脚本会在页面解析中，停止页面解析，立刻下载并且执行</li>
+</ul>
+<p>无论使用defer还是async属性，都需要首先将页面中的js文件进行整理，哪些文件之间有依赖性，哪些文件可以延迟加载等等，做好js代码的合并和拆分，然后再根据页面需要使用这两个属性</p>
+<h1 id="为什么通常推荐将CSS-lt-link-gt-放置在头部之间，而将JS-lt-script-gt-放置在-lt-body-gt-之前？你知道有哪些例外吗？"><a href="#为什么通常推荐将CSS-lt-link-gt-放置在头部之间，而将JS-lt-script-gt-放置在-lt-body-gt-之前？你知道有哪些例外吗？" class="headerlink" title="为什么通常推荐将CSS&lt;link&gt;放置在头部之间，而将JS&lt;script&gt;放置在&lt;/body&gt;之前？你知道有哪些例外吗？"></a>为什么通常推荐将<code>CSS&lt;link&gt;</code>放置在头部之间，而将<code>JS&lt;script&gt;放置在&lt;/body&gt;</code>之前？你知道有哪些例外吗？</h1><p>浏览器是从上到下依次解析html文档<br>将 css 文件放到头部，css文件可以先加载，从而使页面逐步呈现，避免先加载 body 内容，导致页面一开始样式错乱；</p>
+<p>将 javascript 文件放到底部是因为，若将javascript 文件放到 head 里面，就意味着必须等到所有的 javascript 代码都被下载、解析和执行完成之后才开始呈现页面内容。这样就会造成呈现页面时出现明显的延迟，窗口一片空白</p>
+<p>或者使用<code>&lt;script defer&gt;</code>放在<code>&lt;head&gt;</code>预加载，然后等待全部加载完毕后执行js</p>
+<h1 id="什么是渐进式渲染-progressive-rendering-？"><a href="#什么是渐进式渲染-progressive-rendering-？" class="headerlink" title="什么是渐进式渲染 (progressive rendering)？"></a>什么是渐进式渲染 (progressive rendering)？</h1><p>对页面渲染进行分割，使得先渲染出重要的元素，然后一步步渲染出整个页面</p>
+<ul>
+<li>图片懒加载——页面上的图片不会一次性全部加载。当用户滚动页面到图片部分时，JavaScript 将加载并显示图像。</li>
+<li>确定显示内容的优先级（分层次渲染）——为了尽快将页面呈现给用户，页面只包含基本的最少量的 CSS、脚本和内容，然后可以使用延迟加载脚本或监听<code>DOMContentLoaded</code>/<code>load</code>事件加载其他资源和内容。</li>
+<li>异步加载 HTML 片段——当页面通过后台渲染时，把 HTML 拆分，通过异步请求，分块发送给浏览器。</li>
+</ul>
+<h1 id="你用过哪些不同的-HTML-模板语言？"><a href="#你用过哪些不同的-HTML-模板语言？" class="headerlink" title="你用过哪些不同的 HTML 模板语言？"></a>你用过哪些不同的 HTML 模板语言？</h1><p>jade</p>
+<h1 id="H5有哪些新特性？"><a href="#H5有哪些新特性？" class="headerlink" title="H5有哪些新特性？"></a>H5有哪些新特性？</h1><p>拖拽释放(Drag and drop) API</p>
+<p>画布(Canvas) API</p>
+<p>地理(Geolocation) API</p>
+<p>本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；sessionStorage 的数据在浏览器关闭后自动删除</p>
+<p>新的技术webworker, websocket, Geolocation、MathML Focus、pattern、datalist、download、prefetch 和 dns-perfetch及布局属性section、article、nav等</p>
+</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+    clientID: '1f696e7024ff02f8eeea',
+    clientSecret: '111850abd75bf6cd789840d4e3af10d298fa72e6',
+    id: '2019-12-06 10:10:10',
+    repo: 'comments',
+    owner: 'kikyoluka',
+    admin: 'kikyoluka'
+})
+gitalk.render('gitalk')</script></div><div class="pjax-main-loading loading"><img class="loading-image" src="/images/loading.gif"></div></main><footer><div class="footer site-info"><p><i class="icon-copyright"></i><span>2018</span>&minus;<span>2020</span>&nbsp;&nbsp;&nbsp;<i class="icon-heart"></i>&nbsp;&nbsp;<span>琉花</span></p><p><a href="https://github.com/sanshiliuxiao/hexo-theme-aurora.git" target="_blank">hexo-theme-Aurora</a>&nbsp; | &nbsp;行至朝雾里 坠入暮云间</p></div></footer></div><div class="bg"><div class="pc-dynamic-bg"><span class="image" data-image="/images/theme/1.jpg"></span><span class="image" data-image="/images/theme/2.jpg"></span><span class="image" data-image="/images/theme/3.jpg"></span><span class="image" data-image="/images/theme/4.jpg"></span><span class="image" data-image="/images/theme/5.jpg"></span><span class="image" data-image="/images/theme/6.jpg"></span><span class="image" data-image="/images/theme/7.jpg"></span><span class="image" data-image="/images/theme/8.jpg"></span><span class="image" data-image="/images/theme/9.jpg"></span></div></div><span class="back-to-top"></span><div class="leancloud"><script src="/js/third-party/leancloud.min.js?version=2.0.0"></script><div class="leancloud-app-id" leancloud-app-id="LjOwR4ELEqbauKvtQbwq5TUw-MdYXbMMI"></div><div class="leancloud-app-key" leancloud-app-key="BOSFJ49ohbGctgn4zvJE9VN6"></div><div class="leancloud-app-hot"></div><div class="leancloud-app-visitor"></div></div><link rel="stylesheet" href="/lib/APlayer/APlayer.min.css"><script src="/lib/APlayer/APlayer.min.js"></script><div id="aplayer"></div><script>let list = JSON.parse('[{"name":"Julia，Train，Slow Down","artist":"Whale Fall","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/JuliaTrainSlowDown.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/5.jpg"},{"name":"The Wellwisher","artist":"Halves","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/TheWellwisher.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/4.jpg"},{"name":"SadSexy","artist":"Dirty Three","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/music/SadSexy .mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/cover/1.jpg"},{"name":"Riverrun","artist":"Stubborn","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/Riverrun.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/3.jpg"},{"name":"Hortur","artist":"Picastro","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/music/Hortur.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/cover/2.jpg"}]')
+  const ap = new APlayer({
+      container: document.getElementById('aplayer'),
+      theme: '#b28fce',
+      audio: list,
+      fixed: true
+  });
+  ap.list.show()
+</script><script src="/js/third-party/jquery.min.js?version=2.0.0"></script><script src="/js/third-party/isMobile.min.js?version=2.0.0"></script><script src="/js/third-party/timeago.min.js?version=2.0.0"></script><script src="/js/third-party/pjax.min.js?version=2.0.0"></script><script src="/js/third-party/zooming.min.js?version=2.0.0"></script><script src="/js/third-party/backstretch.min.js?version=2.0.0"></script><script src="/js/highlight.min.js?version=2.0.0"></script><script src="/js/index.js?version=2.0.0"></script></body></html>
