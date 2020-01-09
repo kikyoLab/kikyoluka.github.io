@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="ZH-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="author" content="琉花"><meta name="copyright" content="琉花"><meta name="og:image" content="/images/avatar.png"><meta name="og:type" content="website"><meta name="og:site_name" content="琉花"><meta name="og:url" content="kikyoluka.cn"><meta name="og：title" content="琉花"><meta name="theme-color" content="#b854d4" /><title>琉花</title><link rel="shortcut icon" href="/images/favicon.jpg" type="image/x-icon"><link rel="stylesheet" href="/css/index.css?version=2.0.0"><link rel="stylesheet" href="/font/fontello.css?version=2.0.0"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Mono|Noto+Serif+SC&amp;amp;display=swap"><link rel="canonical" href="//kikyoluka.cn"><link rel="dns-prefetch" href="//cdn.jsdelivr.net"><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><script src="/lib/gitalk/gitalk.min.js"></script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="layout"><header><div class="header"><div class="mobile-bg" style="background-image:url(/images/mobile.png);"></div><h1 class="title">琉花</h1><h2 class="subtitle">行至朝雾里 坠入暮云间</h2><nav class="menu"><a class="menu-item pjax-main-link" href="/"><li><i class="icon-index"></i><span>首页</span></li></a><a class="menu-item pjax-main-link" href="/archives/"><li><i class="icon-archives"></i><span>归档</span></li></a><a class="menu-item pjax-main-link" href="/categories/"><li><i class="icon-categories"></i><span>分类</span></li></a><a class="menu-item pjax-main-link" href="/tags/"><li><i class="icon-tags"></i><span>标签</span></li></a><a class="menu-item pjax-main-link" href="/books/"><li><i class="icon-books"></i><span>书单</span></li></a><a class="menu-item pjax-main-link" href="/inspirations/"><li><i class="icon-inspiration"></i><span>灵感</span></li></a><a class="menu-item pjax-main-link" href="/friends/"><li><i class="icon-friends"></i><span>友链</span></li></a><a class="menu-item pjax-main-link" href="/about/"><li><i class="icon-about"></i><span>关于</span></li></a></nav></div></header><main><div class="main-wrapper"></div><div class="pjax-main-page"><div class="post"><article class="post-article"><div class="post-header"><img class="default-image" src="/images/postDefaultImage%20.png" style="opacity:0;"/><img class="post-image" src="https://cdn.jsdelivr.net/gh/chanshiyucx/yoi@latest/bg/50.jpg"/><div class="post-head"><div class="post-title-wrapper"><h1 class="post-title">前端面试题的整理-CSS部分</h1><span class="post-image-source">pixiv</span></div><div class="post-meta"><span class="post-date"><i class="icon-calendar"></i><span class="date timeago" datetime="2019-12-20T02:10:10.000Z"></span></span><span class="post-hot"><i class="icon-fire"></i><span class="leancloud_visitors" id="/2019/12/20/article3/" data-flag-title="前端面试题的整理-CSS部分">热度<span class="leancloud-visitors-count">0</span>℃</span></span><span class="post-tags"><i class="icon-tag"></i><span class="tag">面试知识</span></span><span class="post-categories"><i class="icon-bookmark-empty"></i></span></div></div></div><div class="post-content"><div class="markdown"><h1 id="CSS-中类-classes-和-ID-的区别"><a href="#CSS-中类-classes-和-ID-的区别" class="headerlink" title="CSS 中类 (classes) 和 ID 的区别"></a>CSS 中类 (classes) 和 ID 的区别</h1><p>ID is for JavaScript, Class is for CSS<br>在如果一个元素在页面中出现一次，并且需要在JS中添加动态效果的话就用ID，其他情况用class。</p>
+<h1 id="“resetting”-和-“normalizing”-CSS-之间的区别？你会如何选择，为什么？"><a href="#“resetting”-和-“normalizing”-CSS-之间的区别？你会如何选择，为什么？" class="headerlink" title="“resetting” 和 “normalizing” CSS 之间的区别？你会如何选择，为什么？"></a>“resetting” 和 “normalizing” CSS 之间的区别？你会如何选择，为什么？</h1><ul>
+<li>重置（Resetting）： 重置意味着除去浏览器的所有默认样式。对于页面所有的元素，像margin、padding、font-size这些样式全部置成一样，你将必须重新定义各种元素的样式。</li>
+<li>标准化：没有去掉所有的默认样式，保留了一部分有用的，还纠正了一些常见错误</li>
+</ul>
+<p>一般来说使用标准化就可以了，只有当需要实现非常个性化的网页设计时才会选择重置的方式，因为那时需要自己写很多自定义的样式以满足设计需求，就不再需要标准化的默认样式了</p>
+<h1 id="请阐述Float定位的工作原理"><a href="#请阐述Float定位的工作原理" class="headerlink" title="请阐述Float定位的工作原理"></a>请阐述Float定位的工作原理</h1><ul>
+<li>浮动元素从网页的正常流动中移出，但保留了部分的流动性，会影响其他元素的定位（比如文字会围绕着浮动元素），这一点与绝对定位不同，绝对定位的元素完全从文档流脱离</li>
+<li>如果浮动元素的父元素只包含浮动元素，那么该父元素的高度会坍塌为0，我们可以通过清除（clear）从浮动元素后到父元素关闭前之间的浮动来修复这个问题(clear: both | left | right)</li>
+<li>把浮动元素的父元素属性设置为overflow: auto或overflow: hidden,会使其内部子元素形成BFC，并且父元素会扩张自己，使其能够包围它的子元素</li>
+</ul>
+<h1 id="请阐述z-index，并说明如何形成层叠上下文"><a href="#请阐述z-index，并说明如何形成层叠上下文" class="headerlink" title="请阐述z-index，并说明如何形成层叠上下文"></a>请阐述z-index，并说明如何形成层叠上下文</h1><ul>
+<li><p>z-index属性控制元素的层级（重叠元素的垂直叠加顺序），只能作用于position值不为static的元素</p>
+</li>
+<li><p>未定义z-index时，按照元素在DOM中出现的先后顺序叠加</p>
+</li>
+</ul>
+<h1 id="非静态元素及其子元素将始终覆盖静态-static-定位元素之上"><a href="#非静态元素及其子元素将始终覆盖静态-static-定位元素之上" class="headerlink" title="非静态元素及其子元素将始终覆盖静态(static)定位元素之上"></a>非静态元素及其子元素将始终覆盖静态(static)定位元素之上</h1><ul>
+<li>在一组层叠上下文(即包含多个图层的元素)，其子元素的z-index值是相对于该父元素而不是根节点元素，如果元素 B 位于元素 A 之上（兄弟关系），即使元素 A 的子元素 C 具有比元素 B 更高的z-index值，元素 C 仍然在B之下</li>
+</ul>
+<h1 id="请阐述BFC（Block-Formatting-Context）及其工作原理"><a href="#请阐述BFC（Block-Formatting-Context）及其工作原理" class="headerlink" title="请阐述BFC（Block Formatting Context）及其工作原理"></a>请阐述BFC（Block Formatting Context）及其工作原理</h1><p>只要元素满足下面任一条件即可触发 BFC 特性：</p>
+<ul>
+<li><p>body 根元素</p>
+</li>
+<li><p>浮动元素：float 除 none 以外的值</p>
+</li>
+<li><p>绝对定位元素：position (absolute、fixed)</p>
+</li>
+<li><p>display 为 inline-block、table-cells、flex</p>
+</li>
+<li><p>overflow 除了 visible 以外的值 (hidden、auto、scroll)</p>
+</li>
+</ul>
+<blockquote>
+<p>BFC的作用：<br>1.同一个 BFC 下外边距会发生折叠<br>2.BFC 可以包含浮动的元素（清除浮动）<br>3.BFC 可以阻止元素被浮动元素覆盖</p>
+</blockquote>
+<h1 id="列举不同的清除浮动的技巧，并指出它们各自适用的使用场景"><a href="#列举不同的清除浮动的技巧，并指出它们各自适用的使用场景" class="headerlink" title="列举不同的清除浮动的技巧，并指出它们各自适用的使用场景"></a>列举不同的清除浮动的技巧，并指出它们各自适用的使用场景</h1><ul>
+<li><p>空<code>div</code>方法：<div style="clear: both;"/></p>
+</li>
+<li><p>Clearfix方法,伪元素选择器<code>::after</code></p>
+</li>
+</ul>
+<pre><code>.clearfix::after {
+   content: &#39;&#39;,
+   display: block;
+   clear: both;
+}</code></pre><ul>
+<li>父级元素设置overflow:hidden | auto</li>
+</ul>
+<p>大型项目中一般使用第二种，当子元素高度大于父元素时，设置overflow:hidden可能使其子元素显示不完整</p>
+<h1 id="请解释什么是雪碧图（css-sprites），以及如何实现？"><a href="#请解释什么是雪碧图（css-sprites），以及如何实现？" class="headerlink" title="请解释什么是雪碧图（css sprites），以及如何实现？"></a>请解释什么是雪碧图（css sprites），以及如何实现？</h1><p>雪碧图是把多张图片整合到一张图片上。他被运用在众多使用了很小图标的网站上。实现方式：</p>
+<ul>
+<li>使用生成器将多张图片打包成一张雪碧图，并为其生成合适的CSS</li>
+<li>每张图片都有相应的CSS类，该类定义了background-image、background-position、和background-size属性</li>
+<li>使用图片时，将相应的类添加到你的元素中</li>
+</ul>
+<blockquote>
+<p>好处：</p>
+<ul>
+<li>减少请求多张图片的HTTP请求数（一张雪碧图只需一个请求）。对于HTTP2而言，加载多张图片不再是问题</li>
+<li>提前家在资源，防止在需要时才开始下载引发的问题，比如只出现在:hover伪类中的图片，不会出现闪烁</li>
+</ul>
+</blockquote>
+<h1 id="你最喜欢的图片替换方法是什么，你如何选择使用"><a href="#你最喜欢的图片替换方法是什么，你如何选择使用" class="headerlink" title="你最喜欢的图片替换方法是什么，你如何选择使用?"></a>你最喜欢的图片替换方法是什么，你如何选择使用?</h1><ul>
+<li><p>一些图标是使用before和after伪元素</p>
+</li>
+<li><p>还有一些使用iconfont</p>
+</li>
+<li><p>使用sprite图</p>
+</li>
+<li><p>用背景图片代替图片</p>
+<p>举个栗子：</p>
+<pre><code>  &lt;h1 class=&quot;nir&quot;&gt;[content]&lt;/h1&gt;
+.nir {
+   height: 100px; /* height of replacement image */
+   padding: 0;
+   margin: 0;
+   overflow: hidden;
+}
+
+.nir:before {
+     content: url(image.gif);
+     display: block;
+  }</code></pre></li>
+</ul>
+<h1 id="你会如何解决特定浏览器的样式问题？"><a href="#你会如何解决特定浏览器的样式问题？" class="headerlink" title="你会如何解决特定浏览器的样式问题？"></a>你会如何解决特定浏览器的样式问题？</h1><ul>
+<li>使用autoprefixer自动生成css属性前缀</li>
+<li>直接兼容不同浏览器的CSS库，如Bootstrap</li>
+<li>使用reset CSS 或者normalize.css</li>
+<li>在确定问题原因和有问题的浏览器后，使用单独的样式表，仅供出现问题的浏览器加载，这种方法需要使用服务器端渲染</li>
+</ul>
+<h1 id="如何为有功能限制的浏览器提供网页？你会使用哪些技术和处理方法？"><a href="#如何为有功能限制的浏览器提供网页？你会使用哪些技术和处理方法？" class="headerlink" title="如何为有功能限制的浏览器提供网页？你会使用哪些技术和处理方法？"></a>如何为有功能限制的浏览器提供网页？你会使用哪些技术和处理方法？</h1><ul>
+<li>优雅降级：为现代浏览器构建应用，同时确保它在旧版本浏览器中正常运行</li>
+<li>渐进增强：构建基于用户体验的应用，但在浏览器支持时添加新增功能</li>
+<li>利用<a href="https://caniuse.com/" target="_blank" rel="noopener">caniuse.com</a>检查特性支持；</li>
+<li>使用<a href="https://modernizr.com/" target="_blank" rel="noopener">Modernizr</a>进行特性检测</li>
+<li>使用autoprefixer解决css的兼容性</li>
+</ul>
+<h1 id="有哪些的隐藏内容的方法-如果同时还要保证屏幕阅读器可用呢-？"><a href="#有哪些的隐藏内容的方法-如果同时还要保证屏幕阅读器可用呢-？" class="headerlink" title="有哪些的隐藏内容的方法 (如果同时还要保证屏幕阅读器可用呢)？"></a>有哪些的隐藏内容的方法 (如果同时还要保证屏幕阅读器可用呢)？</h1><ul>
+<li><code>display:none</code>看不见也摸不着，屏幕阅读器更会忽略其内容；</li>
+<li><code>visibility:hidden</code>虽然看得见但是摸不着，占据了一定的物理空间，屏幕阅读器也会忽略，如果想要在读屏设备中让这些内容可见，解决方案的基本思路都是将这些内容放到屏幕、视线意外的地方</li>
+<li>或者就是将大小设置成 0，比如 <code>text-indent: -9999em;</code>、<code>overflow: hidden;</code>、<code>height: 0</code>.</li>
+</ul>
+<pre><code> .texthidden {
+    display:block;/*统一转化为块级元素*/
+    overflow: hidden;
+    width: 0;
+    height: 0;
+   }</code></pre><p>不过既然这是了读屏而优化的，那么可以用 media query 来完成，media speech 用于语音输出的读屏设备</p>
+<pre><code>@media speech {
+    /* media-specify rules */
+}</code></pre><h1 id="你用过栅格系统-grid-system-吗？如果使用过，你最喜欢哪种？"><a href="#你用过栅格系统-grid-system-吗？如果使用过，你最喜欢哪种？" class="headerlink" title="你用过栅格系统 (grid system) 吗？如果使用过，你最喜欢哪种？"></a>你用过栅格系统 (grid system) 吗？如果使用过，你最喜欢哪种？</h1><p>使用过bootstarp,element-ui</p>
+<h1 id="你用过媒体查询，或针对移动端的布局-CSS-吗？"><a href="#你用过媒体查询，或针对移动端的布局-CSS-吗？" class="headerlink" title="你用过媒体查询，或针对移动端的布局/CSS 吗？"></a>你用过媒体查询，或针对移动端的布局/CSS 吗？</h1><p>结构:@media 设备类型 and (设备特性)｛样式代码｝</p>
+<p>常用的设备类型（媒体类型）<br>     1.all (所有的设备)<br>     2.screen (电脑显示器)<br>     3.print  (打印用纸或打印预览图)<br>     4.handheld (便携设备)<br>     5.tv (电视机类型的设备)</p>
+<pre><code>@media screen and (min-width:600px) {
+    nav {
+      float: left;
+      width: 25%;
+    }
+    section {
+      margin-left: 25%;
+    }
+  }
+  @media screen and (max-width:599px) {
+    nav li {
+      display: inline;
+    }
+  }</code></pre><h1 id="你熟悉-SVG-样式的书写吗？"><a href="#你熟悉-SVG-样式的书写吗？" class="headerlink" title="你熟悉 SVG 样式的书写吗？"></a>你熟悉 SVG 样式的书写吗？</h1><h1 id="如何优化网页的打印样式？"><a href="#如何优化网页的打印样式？" class="headerlink" title="如何优化网页的打印样式？"></a>如何优化网页的打印样式？</h1><link rel="stylesheet" type="text/css" media="screen" href="xxx.css" />
+
+<p>其中media指定的属性就是设备，显示器上就是screen，打印机则是print，电视是tv，投影仪是projection。</p>
+<link rel="stylesheet" type="text/css" media="print" href="yyy.css" />
+
+<p>但打印样式表也应有些注意事项：</p>
+<ol>
+<li><p>打印样式表中最好不要用背景图片，因为打印机不能打印CSS中的背景。如要显示图片，请使用html插入到页面中</p>
+</li>
+<li><p>最好不要使用像素作为单位，因为打印样式表要打印出来的会是实物，所以建议使用pt和cm</p>
+</li>
+<li><p>隐藏掉不必要的内容（<code>@print div{display:none;}</code>） </p>
+</li>
+<li><p>打印样式表中最好少用浮动属性，因为它们会消失。 如果想要知道打印样式表的效果如何，直接在浏览器上选择打印预览就可以了</p>
+</li>
+</ol>
+<h1 id="在书写高效-CSS-时会有哪些问题需要考虑？"><a href="#在书写高效-CSS-时会有哪些问题需要考虑？" class="headerlink" title="在书写高效 CSS 时会有哪些问题需要考虑？"></a>在书写高效 CSS 时会有哪些问题需要考虑？</h1><ol>
+<li>遵循一个标准的声明顺序</li>
+</ol>
+<pre><code class="css">.someclass {
+　　1.位置属性(position, top, right, z-index, display, float等)
+　　2.大小(width, height, padding, margin)
+　　3.文字系列(font, line-height, letter-spacing, color- text-align等)
+　　4.背景(background, border等)
+　　5.其他(animation, transition等)
+}</code></pre>
+<p>box-model从内向外写： <code>size -&gt; padding -&gt; border -&gt; margin</code></p>
+<ol start="2">
+<li>尽量避免使用后代选择符</li>
+</ol>
+<pre><code>// 烂透了
+html div tr td {..}</code></pre><ol start="3">
+<li>避免链式（交集）选择符</li>
+</ol>
+<pre><code class="css">// 糟糕
+.menu.left.icon {..}
+ // 好的
+.menu-left-icon {..}</code></pre>
+<ol start="4">
+<li>组织好的代码格式</li>
+</ol>
+<pre><code class="css">/*糟糕*/
+
+.someclass-a, .someclass-b, .someclass-c, .someclass-d {
+ ...
+}
+
+/* 好的 */
+.someclass-a, 
+.someclass-b, 
+.someclass-c, 
+.someclass-d {
+ ...
+}
+
+/* 好的做法 */
+.someclass {
+    background-image:
+        linear-gradient(#000, #ccc),
+        linear-gradient(#ccc, #ddd);
+    box-shadow:
+        2px 2px 2px #000,
+        1px 4px 1px 1px #ddd inset;
+}</code></pre>
+<h1 id="使用-CSS-预处理器的优缺点有哪些"><a href="#使用-CSS-预处理器的优缺点有哪些" class="headerlink" title="使用 CSS 预处理器的优缺点有哪些?"></a>使用 CSS 预处理器的优缺点有哪些?</h1><ul>
+<li>缺点：简单来说CSS预处理器语言较CSS玩法变得更高级了，但同时降低了自己对最终代码的控制力。更致命的是提高了门槛，首先是上手门槛，其次是维护门槛，再来是团队整体水平和规范的门槛。这也造成了初学学习成本的昂贵。</li>
+</ul>
+<ul>
+<li>优点：用一种专门的编程语言，为CSS增加了一些编程的特性，将CSS作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。通俗的说，CSS预处理器用一种专门的编程语言，进行Web页面样式设计，然后再编译成正常的CSS文件，以供项目使用。CSS预处理器为CSS增加一些编程的特性，无需考虑浏览器的兼容性问题，例如你可以在CSS中使用变量、简单的逻辑程序、函数等等在编程语言中的一些基本特性，可以让你的CSS更加简洁、适应性更强、可读性更佳，更易于代码的维护等诸多好处。</li>
+</ul>
+<h1 id="描述下你曾经使用过的-CSS-预处理的优缺点"><a href="#描述下你曾经使用过的-CSS-预处理的优缺点" class="headerlink" title="描述下你曾经使用过的 CSS 预处理的优缺点"></a>描述下你曾经使用过的 CSS 预处理的优缺点</h1><ul>
+<li>Sass和Less语法严谨、Stylus相对自由。因为Less长得更像 css，所以它可能学习起来更容易。</li>
+<li>Sass 和 Compass、Stylus 和 Nib 都是好基友。</li>
+<li>Sass 和 Stylus 都具有类语言的逻辑方式处理：条件、循环等，而 Less 需要通过When等关键词模拟这些功能，这方面 Less 比不上 Sass 和 Stylus。</li>
+<li>Less 在丰富性以及特色上都不及 Sass 和 Stylus，若不是因为 Bootstrap 引入了 Less，可能它不会像现在这样被广泛应用。</li>
+</ul>
+<h1 id="如果设计中使用了非标准的字体，你该如何去实现？"><a href="#如果设计中使用了非标准的字体，你该如何去实现？" class="headerlink" title="如果设计中使用了非标准的字体，你该如何去实现？"></a>如果设计中使用了非标准的字体，你该如何去实现？</h1><p>1.用图片代替</p>
+<p>2.web fonts在线字库，如Google Webfonts，Typekit 等等</p>
+<h1 id="请解释浏览器是如何判断元素是否匹配某个-CSS-选择器？"><a href="#请解释浏览器是如何判断元素是否匹配某个-CSS-选择器？" class="headerlink" title="请解释浏览器是如何判断元素是否匹配某个 CSS 选择器？"></a>请解释浏览器是如何判断元素是否匹配某个 CSS 选择器？</h1><p>因为效率和文档流的解析方向，从后往前判断，由最后一部分的索引产生一个集合，然后向上匹配，不存在的则从该集合中删除，一直到整个选择器都匹配完，还在集合里面的就是所匹配的选择器。</p>
+<ul>
+<li>举个例子，有选择器：</li>
+</ul>
+<pre><code class="text">body.ready #wrapper &gt; .lol233</code></pre>
+<p>先把所有 class 中有 lol233 的元素拿出来组成一个集合，然后上一层，对每一个集合中的元素，如果元素的 parent id 不为 #wrapper 则把元素从集合中删去； 再向上，从这个元素的父元素开始向上找，没有找到一个 tagName 为 body 且 class 中有 ready 的元素，就把原来的元素从集合中删去；至此这个选择器匹配结束，所有还在集合中的元素满足</p>
+<h1 id="请描述伪元素-pseudo-elements-及其用途。"><a href="#请描述伪元素-pseudo-elements-及其用途。" class="headerlink" title="请描述伪元素 (pseudo-elements) 及其用途。"></a>请描述伪元素 (pseudo-elements) 及其用途。</h1><p>伪元素用于创建一些不在文档树中的元素，并为其添加样式。比如说，我们可以通过<code>:before</code>来在一个元素前增加一些文本，并为这些文本添加样式。虽然用户可以看到这些文本，但是这些文本实际上不在文档树中。</p>
+<h1 id="请解释你对盒模型的理解，以及如何在-CSS-中告诉浏览器使用不同的盒模型来渲染你的布局。"><a href="#请解释你对盒模型的理解，以及如何在-CSS-中告诉浏览器使用不同的盒模型来渲染你的布局。" class="headerlink" title="请解释你对盒模型的理解，以及如何在 CSS 中告诉浏览器使用不同的盒模型来渲染你的布局。"></a>请解释你对盒模型的理解，以及如何在 CSS 中告诉浏览器使用不同的盒模型来渲染你的布局。</h1><p>标准盒子模型和IE盒子模型</p>
+<p><strong>标准(W3C)盒子模型：</strong>内容content+填充padding+边框border+边界margin，宽高指的是 content 的宽高 （box-sizing:content-box）</p>
+<p><strong>低版本IE盒子模型：</strong>内容（content+padding+border）+ 边界margin，宽高指的是 content+padding+border 部分的宽高 （box-sizing:border-box）</p>
+<h1 id="请解释-box-sizing-border-box-的作用-并且说明使用它有什么好处？"><a href="#请解释-box-sizing-border-box-的作用-并且说明使用它有什么好处？" class="headerlink" title="请解释 * { box-sizing: border-box; } 的作用, 并且说明使用它有什么好处？"></a>请解释 <code>* { box-sizing: border-box; }</code> 的作用, 并且说明使用它有什么好处？</h1><p>通常一个块级元素实际所占宽高度=外边距（margin）+ 边界宽度(border-width) + 内边距（padding）+ 高度（height） / 宽度（width）；如果设置了border-box，实际所占宽高度 = 设置的高度（height）/ 设置的宽度（width）+ 外边距（margin），简化了计算位置的问题，更容易排版</p>
+<h1 id="请罗列出你所知道的-display-属性的全部值，并解释-inline-和-inline-block-的区别"><a href="#请罗列出你所知道的-display-属性的全部值，并解释-inline-和-inline-block-的区别" class="headerlink" title="请罗列出你所知道的 display 属性的全部值，并解释 inline 和 inline-block 的区别"></a>请罗列出你所知道的 display 属性的全部值，并解释 inline 和 inline-block 的区别</h1><p>none：隐藏元素</p>
+<p>block：变成块级元素</p>
+<p>inline：变成内联元素</p>
+<p>inline-block：变成内联块级元素</p>
+<p>inherit：从父元素继承display属性的值</p>
+<p>list-item 此元素会作为列表显示。</p>
+<p>run-in此元素会根据上下文作为块级元素或内联元素显示。</p>
+<p>table 此元素会作为块级表格来显示（类似table），表格前后带有换行符。</p>
+<p>inline-table 此元素会作为内联表格来显示（类似table），表格前后没有换行符。</p>
+<p>table-row-group 此元素会作为一个或多个行的分组来显示（类似tbody）</p>
+<p>table-header-group 此元素会作为一个或多个行的分组来显示（类似thead）</p>
+<p>table-footer-group： 此元素会作为一个或多个行的分组来显示（类似tfoot）</p>
+<p>table-row 此元素会作为一个表格行显示（类似 tr ）。</p>
+<p>table-column-group 此元素会作为一个或多个列的分组来显示（类似 colgroup ）。</p>
+<p>table-column 此元素会作为一个单元格列显示（类似 col ）</p>
+<p>table-cell 此元素会作为一个表格单元格显示（类似 td 和 th）</p>
+<p>table-caption 此元素会作为一个表格标题显示（类似 caption）</p>
+<p>CSS3添加属性flex(块级元素)和inline-flex(内联元素)，设为flex布局以后，子元素的float、clear和vertical-align属性将失效。</p>
+<p><strong>常用的有：</strong></p>
+<ol>
+<li><p>none： 元素不会显示，而且改元素现实的空间也不会保留。但有另外一个 visibility: hidden， 是保留元素的空间的</p>
+</li>
+<li><p>inline： display的默认属性。将元素显示为内联元素，元素前后没有换行符。我们知道内联元素是无法设置宽高的，所以一旦将元素的display 属性设为 inline， 设置属性height和width是没有用的；此时影响它的高度一般是内部元素的高度（font-size）和padding</p>
+</li>
+<li><p>block： 将元素将显示为块级元素，元素前后会带有换行符。设置为block后，元素可以设置width和height了，元素独占一行</p>
+</li>
+<li><p>inline-block：行内块元素。这个属性值融合了inline 和 block 的特性，即是它既是内联元素，又可以设置width和height</p>
+</li>
+</ol>
+<h1 id="请解释-relative、fixed、absolute-和-static-元素的区别"><a href="#请解释-relative、fixed、absolute-和-static-元素的区别" class="headerlink" title="请解释 relative、fixed、absolute 和 static 元素的区别"></a>请解释 relative、fixed、absolute 和 static 元素的区别</h1><ol>
+<li>static：默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right 或者 z-index 声明）</li>
+<li>relative：生成相对定位的元素，通过top,bottom,left,right的设置相对于其正常位置进行定位。可通过z-index进行层次分级</li>
+<li>absolute：生成绝对定位的元素，相对于 static 定位以外的第一个父元素进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。可通过z-index进行层次分级</li>
+<li>fixed：生成绝对定位的元素，相对于浏览器窗口进行定位。元素的位置通过 “left”, “top”, “right” 以及 “bottom” 属性进行规定。可通过z-index进行层次分级</li>
+</ol>
+<ul>
+<li>relative：生成相对定位的元素，相对于其正常位置进行定位。 元素的位置通过left、right、top、button属性进行规定，可以通过z-index进行层次分级。元素元素仍保持其未定位前的形状，原本所占的空间仍将保留。如果没有定位偏移量，对元素本身没有任何影响</li>
+</ul>
+<ul>
+<li>absolute：生成绝对定位元素。使元素脱离文档流，并相对于其<strong><a href="https://link.zhihu.com/?target=http%3A//www.webforend.com/a/CSSjiaocheng/2016/0712/46.html">包含块</a></strong>进行定位，包含块可能是文档中的另一个元素或者是初始包含块，元素原先在正常文档流中所占的空间会会被后面元素占据；元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框；</li>
+</ul>
+<blockquote>
+<p><strong>注:</strong> 绝对定位元素的包含块由离它最近的 ‘position’ 属性为 ‘absolute’、’relative’ 或者 ‘fixed’ 的祖先元素创建。只要父级元素设置了position并且不是static（默认既是static），那么设定了absolute的子元素即以此为包含块（最近的）；如果都没有定义，那么就相对于整个文档body定位（注意不是相对于浏览器窗口定位）相对定位一般都是配合绝对定位元素使用</p>
+</blockquote>
+<ul>
+<li>fixed：生成绝对定位元素，相对于浏览器窗口的定位。通常配合z-index一起来使用。比如说网页上悬挂的聊天图标或者广告就是用了fixed</li>
+</ul>
+<h1 id="CSS-中字母-‘C’-的意思是叠层-Cascading-。请问在确定样式的过程中优先级是如何决定的-请举例-？如何有效使用此系统？"><a href="#CSS-中字母-‘C’-的意思是叠层-Cascading-。请问在确定样式的过程中优先级是如何决定的-请举例-？如何有效使用此系统？" class="headerlink" title="CSS 中字母 ‘C’ 的意思是叠层 (Cascading)。请问在确定样式的过程中优先级是如何决定的 (请举例)？如何有效使用此系统？"></a>CSS 中字母 ‘C’ 的意思是叠层 (Cascading)。请问在确定样式的过程中优先级是如何决定的 (请举例)？如何有效使用此系统？</h1><p>（外部样式）External style sheet &lt;（内部样式）Internal style sheet &lt;（内联样式）Inline style</p>
+<h1 id="你在开发或生产环境中使用过哪些-CSS-框架？你觉得应该如何改善他们？"><a href="#你在开发或生产环境中使用过哪些-CSS-框架？你觉得应该如何改善他们？" class="headerlink" title="你在开发或生产环境中使用过哪些 CSS 框架？你觉得应该如何改善他们？"></a>你在开发或生产环境中使用过哪些 CSS 框架？你觉得应该如何改善他们？</h1><p>Bootstrap<br>element-ui</p>
+<h1 id="请问你有尝试过-CSS-Flexbox-或者-Grid-标准规格吗？"><a href="#请问你有尝试过-CSS-Flexbox-或者-Grid-标准规格吗？" class="headerlink" title="请问你有尝试过 CSS Flexbox 或者 Grid 标准规格吗？"></a>请问你有尝试过 CSS Flexbox 或者 Grid 标准规格吗？</h1><p>Flexbox 是一种一维布局，一行或者一列。Grid 是一种二维布局，多行和多列。</p>
+<h1 id="为什么响应式设计-responsive-design-和自适应设计-adaptive-design-不同？"><a href="#为什么响应式设计-responsive-design-和自适应设计-adaptive-design-不同？" class="headerlink" title="为什么响应式设计 (responsive design) 和自适应设计 (adaptive design) 不同？"></a>为什么响应式设计 (responsive design) 和自适应设计 (adaptive design) 不同？</h1><ul>
+<li><p>Responsive design (响应式设计)：建立一个网页，通过CSS Media Queries，Content－Based Breakpoint（基于内容的断点）等技术来改变网页的大小以适应不同分辨率的屏幕。</p>
+</li>
+<li><p>Adaptive design (自适应设计)：为不同类别的设备建立不同的网页，检测到设备分辨率大小后调用相应的网页。目前AWD网页主要针对这几种分辨率（320，480，760，960，1200，1600）</p>
+</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/21b19020b573ccdc38c13227f50f33b0_hd.jpg" alt="img"></p>
+<h1 id="你有兼容-retina-屏幕的经历吗？如果有，在什么地方使用了何种技术？"><a href="#你有兼容-retina-屏幕的经历吗？如果有，在什么地方使用了何种技术？" class="headerlink" title="你有兼容 retina 屏幕的经历吗？如果有，在什么地方使用了何种技术？"></a>你有兼容 retina 屏幕的经历吗？如果有，在什么地方使用了何种技术？</h1><h1 id="请问为何要使用-translate-而非-absolute-positioning，或反之的理由？为什么？"><a href="#请问为何要使用-translate-而非-absolute-positioning，或反之的理由？为什么？" class="headerlink" title="请问为何要使用 translate() 而非 absolute positioning，或反之的理由？为什么？"></a>请问为何要使用 <code>translate()</code> 而非 <em>absolute positioning</em>，或反之的理由？为什么？</h1><p>通过absolute定位属性实现的移动，通过translate也可以实现，两者结合使用可以实现元素的居中。</p>
+<ol>
+<li>文档流上的差异：</li>
+</ol>
+<p>absolute会脱离文档流，而translate不会脱离文档流</p>
+<ol start="2">
+<li>基点上的差异：</li>
+</ol>
+<p>absolute是基于第一个非static父元素的左上角border与padding交界处，而translate是子元素整体平移，没有所谓的基点而言</p>
+<ol start="3">
+<li>视图属性上的差异：</li>
+</ol>
+<p>可以看出使用 translate 的例子的 offsetTop 和 offsetLeft 的数值与没有产生位移的元素没有然后区别，无论位移多少这两个数值都是固定不变的；而使用相对定位的例子 offsetTop 和 offsetLeft 的数值则根据位移的长度发生了改变</p>
+<ol start="4">
+<li>动画表现上的差异：</li>
+</ol>
+<p>使用绝对定位的动画效果会受制于利用像素(px)为单位进行位移，而使用 translate 函数的动画则可以不受像素的影响，以更小的单位进行位移。</p>
+<p><strong>另外，绝对定位的动画效果完全使用 CPU 进行计算，而使用 translate 函数的动画则是利用 GPU，因此在视觉上使用 translate 函数的动画可以有比绝对定位动画有更高的帧数</strong></p>
+</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+    clientID: '007c2e64322ff31b60e9',
+    clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
+    id: '2019-12-20 10:10:10',
+    repo: 'comments',
+    owner: 'kikyoluka',
+    admin: 'kikyoluka'
+})
+gitalk.render('gitalk')</script></div><div class="pjax-main-loading loading"><img class="loading-image" src="/images/loading.gif"></div></main><footer><div class="footer site-info"><p><i class="icon-copyright"></i><span>2018</span>&minus;<span>2020</span>&nbsp;&nbsp;&nbsp;<i class="icon-heart"></i>&nbsp;&nbsp;<span>琉花</span></p><p><a href="https://github.com/sanshiliuxiao/hexo-theme-aurora.git" target="_blank">hexo-theme-Aurora</a>&nbsp; | &nbsp;行至朝雾里 坠入暮云间</p></div></footer></div><div class="bg"><div class="pc-dynamic-bg"><span class="image" data-image="/images/theme/1.jpg"></span><span class="image" data-image="/images/theme/2.jpg"></span><span class="image" data-image="/images/theme/3.jpg"></span><span class="image" data-image="/images/theme/4.jpg"></span><span class="image" data-image="/images/theme/5.jpg"></span><span class="image" data-image="/images/theme/6.jpg"></span><span class="image" data-image="/images/theme/7.jpg"></span><span class="image" data-image="/images/theme/8.jpg"></span><span class="image" data-image="/images/theme/9.jpg"></span></div></div><span class="back-to-top"></span><div class="leancloud"><script src="/js/third-party/leancloud.min.js?version=2.0.0"></script><div class="leancloud-app-id" leancloud-app-id="LjOwR4ELEqbauKvtQbwq5TUw-MdYXbMMI"></div><div class="leancloud-app-key" leancloud-app-key="BOSFJ49ohbGctgn4zvJE9VN6"></div><div class="leancloud-app-hot"></div><div class="leancloud-app-visitor"></div></div><link rel="stylesheet" href="/lib/APlayer/APlayer.min.css"><script src="/lib/APlayer/APlayer.min.js"></script><div id="aplayer"></div><script>let list = JSON.parse('[{"name":"Julia，Train，Slow Down","artist":"Whale Fall","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/JuliaTrainSlowDown.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/5.jpg"},{"name":"The Wellwisher","artist":"Halves","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/TheWellwisher.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/4.jpg"},{"name":"SadSexy","artist":"Dirty Three","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/music/SadSexy .mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/cover/1.jpg"},{"name":"Riverrun","artist":"Stubborn","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/Riverrun.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/3.jpg"},{"name":"Hortur","artist":"Picastro","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/music/Hortur.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/cover/2.jpg"}]')
+  const ap = new APlayer({
+      container: document.getElementById('aplayer'),
+      theme: '#b28fce',
+      audio: list,
+      fixed: true,
+      volume: 1
+  });
+  ap.list.show()
+</script><script src="/js/third-party/jquery.min.js?version=2.0.0"></script><script src="/js/third-party/isMobile.min.js?version=2.0.0"></script><script src="/js/third-party/timeago.min.js?version=2.0.0"></script><script src="/js/third-party/pjax.min.js?version=2.0.0"></script><script src="/js/third-party/zooming.min.js?version=2.0.0"></script><script src="/js/third-party/backstretch.min.js?version=2.0.0"></script><script src="/js/highlight.min.js?version=2.0.0"></script><script src="/js/index.js?version=2.0.0"></script></body></html>
