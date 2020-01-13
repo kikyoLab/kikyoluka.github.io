@@ -350,8 +350,350 @@ math.add(2, 3);</code></pre><p>第二行math.add(2, 3)，在第一行require(‘
 <li>null 为一个空值</li>
 </ul>
 <p>typeof undefined 返回 undefined<br>typeof null 返回 object</p>
-<h1 id="什么是闭包-closure-，如何使用它，为什么要使用它？"><a href="#什么是闭包-closure-，如何使用它，为什么要使用它？" class="headerlink" title="什么是闭包 (closure)，如何使用它，为什么要使用它？"></a>什么是闭包 (closure)，如何使用它，为什么要使用它？</h1><p>未完待续……</p>
-</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+<h1 id="什么是闭包-closure-，如何使用它，为什么要使用它？"><a href="#什么是闭包-closure-，如何使用它，为什么要使用它？" class="headerlink" title="什么是闭包 (closure)，如何使用它，为什么要使用它？"></a>什么是闭包 (closure)，如何使用它，为什么要使用它？</h1><p>由于在Javascript语言中，只有函数内部的子函数才能读取局部变量，因此可以把闭包简单理解成”定义在一个函数内部的函数”，就是能够读取其他函数内部变量的函数</p>
+<p>闭包可以让这些变量的值始终保持在内存中，让我们可以读取函数内部的变量;所以在本质上，闭包就是将函数内部和函数外部连接起来的一座桥梁</p>
+<p>闭包的特性：<br>1.函数内再嵌套函数<br>2.内部函数可以引用外层的参数和变量<br>3.参数和变量不会被垃圾回收机制回收</p>
+<h1 id="请举出一个匿名函数的典型用例？"><a href="#请举出一个匿名函数的典型用例？" class="headerlink" title="请举出一个匿名函数的典型用例？"></a>请举出一个匿名函数的典型用例？</h1><p>匿名函数：就是没有函数名的函数，自执行匿名函数</p>
+<ul>
+<li>匿名函数的基本形式为（function（）{…}）（）;</li>
+<li>前面的括号包含函数体，后面的括号就是给匿名函数传递参数并立即执行之</li>
+<li>匿名函数的作用是用于闭包和避免变量的污染以及函数名的冲突</li>
+</ul>
+<p>举例说明：</p>
+<pre><code>function func() {
+  return function() {
+
+  }
+}
+
+const func = function(){}
+
+(function(){
+
+})()</code></pre><p>用途：<br>        匿名函数最大的用途是创建闭包（这是JavaScript语言的特性之一），并且还可以嵌套命名空间，以减少变量的使用</p>
+<p>作用域链的机制导致一个问题，<strong>在循环中里的匿名函数取得的任何变量都是最后一个值</strong></p>
+<h1 id="你是如何组织自己的代码？是使用模块模式，还是使用经典继承的方法？"><a href="#你是如何组织自己的代码？是使用模块模式，还是使用经典继承的方法？" class="headerlink" title="你是如何组织自己的代码？是使用模块模式，还是使用经典继承的方法？"></a>你是如何组织自己的代码？是使用模块模式，还是使用经典继承的方法？</h1><p>模块模式，一个IIFE就算是一个模块，互相之间不影响</p>
+<pre><code>var jspy = (function() {
+  var _count = 0;
+
+  var incrementCount = function() {
+    _count++;
+  }
+
+  var getCount = function() {
+    return _count;
+  }
+  return {
+    incrementCount: incrementCount,
+    getCount: getCount
+  };
+})();  </code></pre><h1 id="请指出-JavaScript-宿主对象-host-objects-和原生对象-native-objects-的区别？"><a href="#请指出-JavaScript-宿主对象-host-objects-和原生对象-native-objects-的区别？" class="headerlink" title="请指出 JavaScript 宿主对象 (host objects) 和原生对象 (native objects) 的区别？"></a>请指出 JavaScript 宿主对象 (host objects) 和原生对象 (native objects) 的区别？</h1><ol>
+<li><p><strong>原生对象：</strong></p>
+<ul>
+<li>独立于宿主环境的ECMAScript实现提供的对象</li>
+<li>与宿主无关，在javascript（远景浏览器）、nodejs（node平台）、jscript（ie浏览器）、typescript（微软平台）等等中均有这些对象</li>
+<li>简单来说，本地对象就是 ECMA-262 定义的类（引用类型），在运行过程中动态创建的对象，需要new<br />
+</li>
+</ul>
+</li>
+<li><p><strong>内置对象：</strong> </p>
+<ul>
+<li><p>由 ECMAScript 实现提供的、独立于宿主环境的所有对象，在 ECMAScript 程序开始执行时出现，即在引擎初始化阶段就被创建好的对象；这意味着开发者不必明确实例化内置对象，它已被实例化了 </p>
+</li>
+<li><p>同样是“独立于宿主环境”。根据定义我们似乎很难分清“内置对象”与“本地对象”的区别。而ECMA-262 只定义了两个内置对象，即 Global 和 Math （它们也是本地对象，根据定义，每个内置对象都是本地对象）如此就可以理解了，内置对象是本地对象的一种</p>
+<br />
+</li>
+</ul>
+</li>
+<li><p><strong>宿主对象：</strong></p>
+<ul>
+<li><p>何为“宿主对象”？主要在这个“宿主”的概念上，ECMAScript中的“宿主”当然就是我们网页的运行环境，即“操作系统”和“浏览器”</p>
+</li>
+<li><p>所有非本地对象都是宿主对象（host object），即由 ECMAScript 实现的宿主环境提供的对象，包含两大类，一个是宿主提供，一个是自定义类对象，ECMAScript官方未定义的对象都属于宿主对象,所有非本地对象都是宿主对象</p>
+</li>
+<li><p>宿主提供对象原理==&gt;由宿主框架通过某种机制注册到ECscript引擎中的对象，如宿主浏览器（以远景为参考）会向ECscript注入window对象，构建其实现javascript。所有的BOM和DOM都是宿主对象。</p>
+</li>
+<li><p>说白了就是，ECMAScript官方未定义的对象都属于宿主对象，因为其未定义的对象大多数是自己通过ECMAScript程序创建的对象</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="请指出以下代码的区别：function-Person-、var-person-Person-、var-person-new-Person"><a href="#请指出以下代码的区别：function-Person-、var-person-Person-、var-person-new-Person" class="headerlink" title="请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()"></a>请指出以下代码的区别：<code>function Person(){}</code>、<code>var person = Person()</code>、<code>var person = new Person()</code></h1><ul>
+<li>第一个是定义了一个函数Person</li>
+<li>第二个是把Person当普通函数执行，并把返回值赋值给person。</li>
+<li>第三个是当做构造函数，通过new关键字创建一个实例对象，赋值给person </li>
+</ul>
+<h1 id="call-和-apply-的区别是什么"><a href="#call-和-apply-的区别是什么" class="headerlink" title=".call 和 .apply 的区别是什么"></a><code>.call</code> 和 <code>.apply</code> 的区别是什么</h1><p>.call和.apply存在的意义：<strong>改变函数执行时的上下文</strong>，再具体一点就是<strong>改变函数运行时的this指向</strong>.</p>
+<p>ECMAScript 规范给所有函数都定义了 call 与 apply 两个方法，它们的应用非常广泛，它们的作用也是一模一样，只是传参的形式有区别而已.</p>
+<ol>
+<li><strong><code>apply( )</code></strong><br>apply 方法传入两个参数：<br>一个是作为函数上下文的对象，另外一个是作为函数参数所组成的数组.<pre><code>var obj = {
+ name : &#39;linxin&#39;
+}
+function func(firstName, lastName){
+ console.log(firstName + &#39; &#39; + this.name + &#39; &#39; + lastName);
+}
+func.apply(obj, [&#39;A&#39;, &#39;B&#39;]);    // A linxin B</code></pre></li>
+</ol>
+<p>可以看到，obj 是作为函数上下文的对象，函数 func 中 this 指向了 obj 这个对象参数 A 和 B 是放在数组中传入 func 函数，分别对应 func 参数的列表元素.</p>
+<ol start="2">
+<li><strong><code>call( )</code></strong><br>call 方法第一个参数也是作为函数上下文的对象，但是后面传入的是一个参数列表，而不是单个数组.<pre><code>var obj = {
+ name: &#39;linxin&#39;
+}
+function func(firstName, lastName) {
+ console.log(firstName + &#39; &#39; + this.name + &#39; &#39; + lastName);
+}
+func.call(obj, &#39;C&#39;, &#39;D&#39;);       // C linxin D</code></pre></li>
+</ol>
+<p>对比 apply 我们可以看到区别，C 和 D 是作为单独的参数传给 func 函数，而不是放到数组中</p>
+<p>对于什么时候该用什么方法，其实不用纠结；如果你的参数本来就存在一个数组中，那自然就用 apply；如果参数比较散乱相互之间没什么关联，就用 call.</p>
+<ol start="3">
+<li><strong><code>apply</code> 和 <code>call</code> 的用法</strong></li>
+</ol>
+<ul>
+<li><ol>
+<li>改变 this 指向</li>
+</ol>
+</li>
+</ul>
+<pre><code>var obj = {
+    name: &#39;linxin&#39;
+}
+function func() {
+    console.log(this.name);
+}
+func.call(obj);       // linxin</code></pre><p>我们知道，call 方法的第一个参数是作为函数上下文的对象，这里把 obj 作为参数传给了 func，此时函数里的 this 便指向了 obj 对象；此处 func 函数里其实相当于：</p>
+<pre><code>function func() {
+    console.log(obj.name);
+}</code></pre><ul>
+<li><ol start="2">
+<li>借用别的对象的方法</li>
+</ol>
+</li>
+</ul>
+<p>先看例子</p>
+<pre><code>var Person1  = function () {
+    this.name = &#39;linxin&#39;;
+}
+var Person2 = function () {
+    this.getname = function () {
+        console.log(this.name);
+    }
+    Person1.call(this);
+}
+var person = new Person2();
+person.getname();       // linxin</code></pre><p>从上面我们看到，Person2 实例化出来的对象 person 通过 getname 方法拿到了 Person1 中的 name.<br>因为在 Person2 中，Person1.call(this) 的作用就是使用 Person1 对象代替 this 对象，那么 Person2 就有了 Person1 中的所有属性和方法了，相当于 Person2 继承了 Person1 的属性和方法.</p>
+<ul>
+<li><ol start="3">
+<li>调用函数</li>
+</ol>
+</li>
+</ul>
+<p>apply、call 方法都会使函数立即执行，因此它们也可以用来调用函数</p>
+<pre><code>function func() {
+    console.log(&#39;linxin&#39;);
+}
+func.call();            // linxin</code></pre><ol start="4">
+<li><strong>call 和 bind 的区别</strong></li>
+</ol>
+<p>在 EcmaScript5 中扩展了叫 bind 的方法，在低版本的 IE 中不兼容.<br>它和 call 很相似，接受的参数有两部分，第一个参数是是作为函数上下文的对象，第二部分参数是个列表，可以接受多个参数.</p>
+<p>它们之间的区别有以下两点:</p>
+<ul>
+<li><ol>
+<li>bind 返回值是函数<pre><code>var obj = {
+name: &#39;linxin&#39;
+}
+function func() {
+console.log(this.name);
+}
+var func1 = func.bind(obj);
+func1();                        // linxin</code></pre>bind 方法不会立即执行，而是返回一个改变了上下文 this 后的函数；而原函数 func 中的 this 并没有被改变，依旧指向全局对象 window.</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>参数的使用</li>
+</ol>
+</li>
+</ul>
+<pre><code>function func(a, b, c) {
+    console.log(a, b, c);
+}
+var func1 = func.bind(null,&#39;linxin&#39;);
+func(&#39;A&#39;, &#39;B&#39;, &#39;C&#39;);            // A B C
+func1(&#39;A&#39;, &#39;B&#39;, &#39;C&#39;);           // linxin A B
+func1(&#39;B&#39;, &#39;C&#39;);                // linxin B C
+func.call(null, &#39;linxin&#39;);      // linxin undefined undefined</code></pre><p>call 是把第二个及以后的参数作为 func 方法的实参传进去，而 func1 方法的实参实则是在 bind 中参数的基础上再往后排.</p>
+<p>在低版本浏览器没有 bind 方法，我们也可以自己实现一个:</p>
+<pre><code>if (!Function.prototype.bind) {
+        Function.prototype.bind = function () {
+            var self = this,                        // 保存原函数
+                context = [].shift.call(arguments), // 保存需要绑定的this上下文
+                args = [].slice.call(arguments);    // 剩余的参数转为数组
+            return function () {                    // 返回一个新函数
+                self.apply(context,[].concat.call(args, [].slice.call(arguments)));
+            }
+        }
+    }</code></pre><h1 id="解释-Function-prototype-bind？"><a href="#解释-Function-prototype-bind？" class="headerlink" title="解释 Function.prototype.bind？"></a>解释 Function.prototype.bind？</h1><p><code>bind()</code> 方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用.</p>
+<pre><code>const module = {
+  x: 42,
+  getX: function() {
+    return this.x;
+  }
+}
+
+const unboundGetX = module.getX;
+console.log(unboundGetX()); // The function gets invoked at the global scope
+// expected output: undefined
+
+const boundGetX = unboundGetX.bind(module);
+console.log(boundGetX());
+// expected output: 42</code></pre><h1 id="在什么时候你会使用-document-write-？"><a href="#在什么时候你会使用-document-write-？" class="headerlink" title="在什么时候你会使用 document.write()？"></a>在什么时候你会使用 <code>document.write()</code>？</h1><p>DOM方法，可向文档写入 HTML 表达式或 JavaScript 代码</p>
+<ul>
+<li><p>加载需要配合JS脚本使用的外部CSS文件<br>将所有需要用到JS的样式都放到这个外部样式表中，如果浏览器不禁用JS，那么该样式<br>表就会被顺利加载，否则页面就不会使用该样式</p>
+<pre><code>&lt;scirpt&gt;
+document.write(&#39;&lt;link  rel=&quot;stylesheet&quot; href=&quot;style_neads_js.css&quot;&gt;&#39;);
+&lt;/script&gt;</code></pre></li>
+<li><p>在新的窗口中写入新的页面数据时<br>由于document.write会重写整个页面，异步调用会影响本页面的文档，如果在新窗口空<br>白页调用，就没影响了;新开一个窗口，把本页面取到的数据在新窗口展示:</p>
+<pre><code>document.open();
+document.write(&#39;anthing&#39;)
+document.close();</code></pre><p>由于带来的弊端较多，一般不建议使用<br>要对DOM进行操作时，还是应当使用安全且对DOM的友好的API方法，以避免不必要的问题出现.</p>
+</li>
+</ul>
+<blockquote>
+<p>注：<br>document.write是直接将内容写入页面的内容流，会导致页面全部重绘<br>innerHTML将内容写入某个DOM节点，不会导致页面全部重绘</p>
+</blockquote>
+<h1 id="请指出浏览器特性检测，特性推断和浏览器-UA-字符串嗅探的区别"><a href="#请指出浏览器特性检测，特性推断和浏览器-UA-字符串嗅探的区别" class="headerlink" title="请指出浏览器特性检测，特性推断和浏览器 UA 字符串嗅探的区别"></a>请指出浏览器特性检测，特性推断和浏览器 UA 字符串嗅探的区别</h1><p>特性检测是指检测浏览器是否支持某个给定特性的过程，该方法是浏览器检测的首选方法</p>
+<p>特性检测的模式很简单：首先检查特性是否存在，如果存在，就使用该特性.因此，使用一个if语句即可实现，如下所示：</p>
+<pre><code>if(navigator.geolocation){
+  //user geolocation
+}</code></pre><p>上面的这种方式令人困惑，也给代码增加了歧义性.现在应尽量避免使用truthy/falsey语句，而是选择使用typeof运算符，如下所示：</p>
+<pre><code>if(typeof  navigator.geolocation!=&quot;undefined&quot;){
+        //use geolocation
+    }</code></pre><p>浏览器嗅探<br>在大多数情况下，首选使用特性检测方法.因为浏览器嗅探方法具有许多缺陷</p>
+<ul>
+<li>其中之一就是少数浏览器可能宣称自己是某主流浏览器，其实并不是那种浏览器类型</li>
+<li>另外一个问题是浏览器嗅探依赖于浏览器的userAgent字符串(user-agent string)，该字符串用于标识浏览器，且浏览器制造商可以在不同的版本之间进行大幅度的修改。仅挡针对其有古怪行为的单个浏览器时，才使用浏览器嗅探技术</li>
+</ul>
+<blockquote>
+<p>navigator对象的appName属性和userAgent属性在标识浏览器方面很有用</p>
+<ul>
+<li>appName属性将返回浏览器的模型，如对IE返回Microsoft Internet Explorer,对Firefox,Chrome和Safari返回Netscape</li>
+<li>userAgent属性返回一个包含多段信息的字符串，如浏览器的版本，操作系统和浏览器模型.但是，这个属性的返回值因浏览器而异.例如，浏览器的版本被嵌入在该字符串的不同位置</li>
+</ul>
+</blockquote>
+<h1 id="请尽可能详尽的解释-Ajax-的工作原理"><a href="#请尽可能详尽的解释-Ajax-的工作原理" class="headerlink" title="请尽可能详尽的解释 Ajax 的工作原理"></a>请尽可能详尽的解释 Ajax 的工作原理</h1><p>Ajax的工作原理相当于在用户和服务器之间加了一个<strong>中间层(AJAX引擎)</strong>,使用户操作与服务器响应异步化，而且并不是所有的用户请求都提交给服务器,像一些数据验证和数据处理等都交给Ajax引擎自己来做, 只有确定需要从服务器读取新数据时再由Ajax引擎代为向服务器提交请求</p>
+<p>Ajax其核心有<code>JavaScript、XMLHTTPRequest、DOM</code>对象组成:</p>
+<ol>
+<li>通过<code>XmlHttpRequest对象</code>来向服务器发异步请求</li>
+<li>然后<code>xhr对象</code>提供了一系列属性，可以监听响应的情况</li>
+<li>然后从服务器获得数据</li>
+<li>再用JavaScript来操作DOM而更新页面</li>
+</ol>
+<h1 id="请解释变量声明提升-hoisting"><a href="#请解释变量声明提升-hoisting" class="headerlink" title="请解释变量声明提升 (hoisting)"></a>请解释变量声明提升 (hoisting)</h1><p>“变量提升”意味着变量和函数的声明会在物理层面移动到代码的最前面，但这么说并不准,实际上变量和函数声明在代码里的位置是不会动的，而是在编译阶段被放入内存中</p>
+<p>JavaScript在执行任何代码段之前，将函数声明放入内存中的优点之一是你可以在声明一个函数之前使用该函数，列如:</p>
+<pre><code>/**
+* 正确的方式：先声明函数，再调用函数 (最佳实践)
+*/
+function catName(name) {
+    console.log(&quot;我的猫名叫 &quot; + name);
+}
+
+catName(&quot;Tigger&quot;);
+
+/*
+以上代码的执行结果是: &quot;我的猫名叫 Tigger&quot;
+*/</code></pre><p>上面的代码片按照是你的正常思维（先声明，后调用）去书写的<br>现在我们来看看当我们在写这个函数之前调用这个函数会发生什么：</p>
+<pre><code>/**
+* 不推荐的方式：先调用函数，再声明函数 
+*/
+
+catName(&quot;Chloe&quot;);
+
+function catName(name) {
+    console.log(&quot;我的猫名叫 &quot; + name);
+}
+
+/*
+代码执行的结果是: &quot;我的猫名叫 Chloe&quot;
+*/</code></pre><p>即使我们在定义这个函数之前调用它，函数仍然可以工作，这是因为在JavaScript中<strong>执行上下文</strong>的工作方式造成的.<br>变量提升也适用于其他数据类型和变量，变量可以在声明之前进行初始化和使用，但是如果没有初始化，就不能使用它们.</p>
+<blockquote>
+<p>注： 函数和变量相比，函数会被优先提升，这意味着函数会被提升到更靠前的位置</p>
+</blockquote>
+<pre><code>num = 6;
+num + 7;
+var num;
+/* 没有给出错误，只要声明了num */</code></pre><p><strong>JavaScript 仅提升声明，而不提升初始化</strong>，如果你先使用的变量，再声明并初始化它，变量的值将是 undefined，以下两个示例演示了相同的行为：</p>
+<pre><code>var x = 1;                 // 声明 + 初始化 x
+console.log(x + &quot; &quot; + y);  // &#39;1 undefined&#39;
+var y = 2;                 // 声明 + 初始化 y
+
+
+//上面的代码和下面的代码是一样的 
+var x = 1;                 // 声明 + 初始化 x
+var y;                     //声明 y
+console.log(x + &quot; &quot; + y);  //y 是未定义的
+y = 2;                     // 初始化  y </code></pre><h1 id="“attribute”-和-“property”-的区别是什么？"><a href="#“attribute”-和-“property”-的区别是什么？" class="headerlink" title="“attribute” 和 “property” 的区别是什么？"></a>“attribute” 和 “property” 的区别是什么？</h1><ul>
+<li>Attribute是原属性</li>
+<li>Property是通过方法处理过得到的属性</li>
+</ul>
+<h1 id="为什么扩展-JavaScript-内置对象不是好的做法？"><a href="#为什么扩展-JavaScript-内置对象不是好的做法？" class="headerlink" title="为什么扩展 JavaScript 内置对象不是好的做法？"></a>为什么扩展 JavaScript 内置对象不是好的做法？</h1><ul>
+<li><strong>扩展对象时，会更改其行为.</strong><br>更改只由您自己的代码使用的对象的行为是可以的，但是，当您更改其他代码也使用的某个代码的行为时，可能会破坏其他代码,当它在javascript中向对象和数组类添加方法时，由于javascript的工作方式，破坏某些东西的风险非常高</li>
+</ul>
+<h1 id="请指出-document-load-和-document-DOMContentLoaded-两个事件的区别"><a href="#请指出-document-load-和-document-DOMContentLoaded-两个事件的区别" class="headerlink" title="请指出 document load 和 document DOMContentLoaded 两个事件的区别"></a>请指出 document load 和 document DOMContentLoaded 两个事件的区别</h1><p>触发的时机不一样，先触发DOMContentLoaded事件（DOM树生成完成），后触发load事件（页面加载完成）</p>
+<ul>
+<li>DOMContentLoaded: DOM解析完成即触发此事件，不等待styles, images等资源的加载</li>
+<li>load：依赖的资源也已加载完成</li>
+</ul>
+<p>DOM文档加载的步骤为:</p>
+<pre><code>解析HTML结构
+加载外部脚本和样式表文件
+解析并执行脚本代码
+DOM树构建完成  //DOMContentLoaded
+加载图片等外部文件
+页面加载完毕 //load</code></pre><p>用原生js可以这么写:</p>
+<pre><code>// 不兼容老的浏览器，兼容写法见[jQuery中ready与load事件](http://www.imooc.com/
+code/3253)，或用jQuery
+
+
+document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
+   // ...代码...
+}, false);
+
+
+window.addEventListener(&quot;load&quot;, function() {
+    // ...代码...
+}, false);</code></pre><p>用jQuery这么写:</p>
+<pre><code>// DOMContentLoaded
+$(document).ready(function() {
+    // ...代码...
+});
+
+//load
+$(document).load(function() {
+    // ...代码...
+});</code></pre><h1 id="和-有什么不同？"><a href="#和-有什么不同？" class="headerlink" title="== 和 === 有什么不同？"></a>== 和 === 有什么不同？</h1><p><strong>“===”叫做严格运算符，”==”叫做相等运算符</strong></p>
+<ul>
+<li><strong>严格运算符的运算规则如下:</strong></li>
+</ul>
+<p>(1)不同类型值<br>如果两个值的类型不同，直接返回false</p>
+<p>(2)同一类的原始类型值<br>同一类型的原始类型的值（数值、字符串、布尔值）比较时，值相同就返回true，值不同就返回false</p>
+<p>(3)同一类的复合类型值<br>两个复合类型（对象、数组、函数）的数据比较时，不是比较它们的值是否相等，而是比较它们是否指向同一个对象</p>
+<p>(4)undefined和null<br>undefined 和 null 不严格相等,与自身严格相等</p>
+<ul>
+<li><strong>相等运算符在比较相同类型的数据时，与严格相等运算符完全一样:</strong></li>
+</ul>
+<p>(1)原始类型的值<br>原始类型的数据会转换成数值类型再进行比较</p>
+<p>(2)对象与原始类型值比较<br>对象（这里指广义的对象，包括数值和函数）与原始类型的值比较时，对象转化成原始类型的值，再进行比较</p>
+<p>(3)undefined和null<br>undefined和null与其他类型的值比较时，结果都为false，它们互相比较时结果为true</p>
+<p>(4)相等运算符的缺点<br>相等运算符隐藏的类型转换，会带来一些违反直觉的结果</p>
+<p><img src="https://pic1.zhimg.com/80/b922270259dece707ef6c6a50259a406_hd.jpg" alt="img"></p>
+<ul>
+<li>红色：===</li>
+<li>橙色：==</li>
+<li>黄色：&lt;= 和 &gt;= 同时成立，== 不成立</li>
+<li>蓝色：只有 &gt;=</li>
+<li>绿色：只有 &lt;=</li>
+</ul>
+<h1 id="请解释-JavaScript-的同源策略-same-origin-policy"><a href="#请解释-JavaScript-的同源策略-same-origin-policy" class="headerlink" title="请解释 JavaScript 的同源策略 (same-origin policy)"></a>请解释 JavaScript 的同源策略 (same-origin policy)</h1></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2019-12-30 10:10:10',
