@@ -693,7 +693,53 @@ $(document).load(function() {
 <li>蓝色：只有 &gt;=</li>
 <li>绿色：只有 &lt;=</li>
 </ul>
-<h1 id="请解释-JavaScript-的同源策略-same-origin-policy"><a href="#请解释-JavaScript-的同源策略-same-origin-policy" class="headerlink" title="请解释 JavaScript 的同源策略 (same-origin policy)"></a>请解释 JavaScript 的同源策略 (same-origin policy)</h1></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+<h1 id="请解释-JavaScript-的同源策略-same-origin-policy"><a href="#请解释-JavaScript-的同源策略-same-origin-policy" class="headerlink" title="请解释 JavaScript 的同源策略 (same-origin policy)"></a>请解释 JavaScript 的同源策略 (same-origin policy)</h1><p>所谓”同源”指的是”三个相同”:</p>
+<ol>
+<li>协议相同</li>
+<li>域名相同</li>
+<li>端口相同</li>
+</ol>
+<p>同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据<br>随着互联网的发展，”同源政策”越来越严格。目前，如果非同源，共有三种行为受到限制:<br>（1） Cookie、LocalStorage 和 IndexDB 无法读取<br>（2） DOM 无法获得。<br>（3） AJAX 请求不能发送</p>
+<p><strong>解决同源的办法：</strong></p>
+<ol>
+<li>跨文档通信 API（Cross-document messaging）</li>
+</ol>
+<p>这个API为window对象新增了一个<code>window.postMessage</code>方法，允许跨窗口通信，不论这两个窗口是否同源</p>
+<p>举例来说，父窗口<code>http://aaa.com</code>向子窗口<code>http://bbb.com</code>发消息，调用<code>postMessage</code>方法就可以了，postMessage方法的第一个参数是具体的信息内容，第二个参数是接收消息的窗口的源（origin），即<code>&quot;协议 + 域名 + 端口&quot;</code>，也可以设为<code>*</code>，表示不限制域名，向所有窗口发送</p>
+<ol start="2">
+<li>AJAX</li>
+</ol>
+<p>同源政策规定，AJAX请求只能发给同源的网址，否则就报错，除了架设服务器代理（浏览器请求同源服务器，再由后者请求外部服务），有三种方法规避这个限制:</p>
+<hr>
+<ul>
+<li>| JSONP</li>
+<li>| WebSocket</li>
+<li>| CORS</li>
+</ul>
+<hr>
+<ol start="3">
+<li><p>document.domain 跨域</p>
+</li>
+<li><p>图像 Ping 跨域</p>
+</li>
+<li><p>window.name 跨域</p>
+</li>
+<li><p>location.hash 跨域</p>
+</li>
+</ol>
+<h1 id="如何实现下列代码"><a href="#如何实现下列代码" class="headerlink" title="如何实现下列代码"></a>如何实现下列代码</h1><p><strong><code>[1,2,3,4,5].duplicator(); // [1,2,3,4,5,1,2,3,4,5]</code></strong></p>
+<ol>
+<li><pre><code>Array.prototype.duplicator = function(){
+　　var l = this.length,i;
+　　for(i=0;i&lt;l;i++){
+　　　this.push(this[i])　
+}</code></pre></li>
+<li><pre><code>Array.prototype.duplicator = function(){
+ var s = this.concat(this);        
+ return s;
+}</code></pre></li>
+</ol>
+</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2019-12-30 10:10:10',
