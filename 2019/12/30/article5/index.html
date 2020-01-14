@@ -739,7 +739,193 @@ $(document).load(function() {
  return s;
 }</code></pre></li>
 </ol>
-</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+<h1 id="什么是三元表达式-Ternary-expression-？"><a href="#什么是三元表达式-Ternary-expression-？" class="headerlink" title="什么是三元表达式 (Ternary expression)？"></a>什么是三元表达式 (Ternary expression)？</h1><p>三元表达式即使用三元运算符的三个操作数：</p>
+<pre><code>test ? num1 : num2</code></pre><p>如果test为true，则结果取num1，否则取num2</p>
+<h1 id="什么是-“use-strict”-使用它的好处和坏处分别是什么？"><a href="#什么是-“use-strict”-使用它的好处和坏处分别是什么？" class="headerlink" title="什么是 “use strict” ? 使用它的好处和坏处分别是什么？"></a>什么是 “use strict” ? 使用它的好处和坏处分别是什么？</h1><p>use strict(严格模式)是一种在JavaScript代码运行时自动实行更严格解析和错误处理的方法，这种模式使得Javascript在更严格的条件下运行</p>
+<ol>
+<li><p><strong>针对单个函数</strong><br>将”use strict”放在函数体的第一行，则整个函数以”严格模式”运行:</p>
+<pre><code>　　function strict(){
+　　　　&quot;use strict&quot;;
+　　　　return &quot;这是严格模式。&quot;;
+　　}
+
+　　function notStrict() {
+　　　　return &quot;这是正常模式。&quot;;
+　　}</code></pre></li>
+<li><p><strong>针对整个脚本文件</strong><br>将整个脚本文件放在一个立即执行的匿名函数之中:</p>
+<pre><code>　　(function (){
+　　　　&quot;use strict&quot;;
+　　　　// some code here
+　　 })();</code></pre></li>
+</ol>
+<ol start="3">
+<li><p><strong>严格模式对Javascript的语法和行为，都做了一些改变：</strong><br><strong>3.1 全局变量显式声明</strong><br>在正常模式中，如果一个变量没有声明就赋值，默认是全局变量<br>严格模式禁止这种用法，全局变量必须显式声明:</p>
+<pre><code>&quot;use strict&quot;;
+
+　　v = 1; // 报错，v未声明
+
+　　for(i = 0; i &lt; 2; i++) { // 报错，i未声明
+　　}</code></pre><p>因此，严格模式下，变量都必须先用var命令声明，然后再使用</p>
+<p><strong>3.2 静态绑定</strong></p>
+<ul>
+<li><p>Javascript语言的一个特点，就是允许”动态绑定”，即某些属性和方法到底属于哪一个对象，不是在编译时确定的，而是在运行时（runtime）确定的</p>
+</li>
+<li><p>严格模式对动态绑定做了一些限制。某些情况下，只允许静态绑定；也就是说，属性和方法到底归属哪个对象，在编译阶段就确定。这样做有利于编译效率的提高，也使得代码更容易阅读，更少出现意外</p>
+</li>
+</ul>
+<p>具体来说，涉及以下几个方面:<br> （1）禁止使用with语句<br>因为with语句无法在编译时就确定，属性到底归属哪个对象:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　var v = 1;
+　　with (o){ // 语法错误
+　　　　v = 2;
+　　}</code></pre><p> （2）创设eval作用域<br>正常模式下，Javascript语言有两种变量作用域（scope）：全局作用域和函数作用域<br>严格模式创设了第三种作用域：eval作用域</p>
+<p>正常模式下，eval语句的作用域，取决于它处于全局作用域，还是处于函数作用域<br>严格模式下，eval语句本身就是一个作用域，不再能够生成全局变量了，它所生成的变量只能用于eval内部</p>
+<pre><code>　&quot;use strict&quot;;
+
+　　var x = 2;
+　　 console.info(eval(&quot;var x = 5; x&quot;)); // 5
+　　console.info(x); // 2</code></pre><p><strong>3.3 增强的安全措施</strong><br> （1）禁止this关键字指向全局对象</p>
+<pre><code>　　function f(){
+　　　　return !this;
+　　}
+　　// 返回false，因为&quot;this&quot;指向全局对象，&quot;!this&quot;就是false
+
+　　function f(){
+　　　　&quot;use strict&quot;;
+　　　　return !this;
+　　}
+　　// 返回true，因为严格模式下，this的值为undefined，所以&quot;!this&quot;为true。</code></pre><p>因此，使用构造函数时，如果忘了加new，this不再指向全局对象，而是报错</p>
+<pre><code>　　function f(){
+
+　　　　&quot;use strict&quot;;
+　　　　this.a = 1;
+　　};
+
+　　f();// 报错，this未定义</code></pre><p> （2）禁止在函数内部遍历调用栈</p>
+<pre><code>　　function f1(){
+　　　　&quot;use strict&quot;;
+
+　　　　f1.caller; // 报错
+　　　　f1.arguments; // 报错
+　　}
+　　f1();</code></pre><p><strong>3.4 禁止删除变量</strong><br> 严格模式下无法删除变量，只有configurable设置为true的对象属性，才能被删除</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　var x;
+　　delete x; // 语法错误
+　　var o = Object.create(null, {&#39;x&#39;: {
+　　　　　　value: 1,
+　　　　　　configurable: true
+　　}});
+
+　　delete o.x; // 删除成功</code></pre><p><strong>3.5 显式报错</strong><br>正常模式下，对一个对象的只读属性进行赋值，不会报错，只会默默地失败<br>严格模式下，将报错:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　var o = {};
+　　Object.defineProperty(o, &quot;v&quot;, { value: 1, writable: false });
+　　o.v = 2; // 报错</code></pre><p>严格模式下，对一个使用getter方法读取的属性进行赋值，会报错:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　var o = {
+　　　　get v() { return 1; }
+　　};
+　　  o.v = 2; // 报错</code></pre><p>严格模式下，对禁止扩展的对象添加新属性，会报错:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　var o = {};
+　　Object.preventExtensions(o);
+　　o.v = 1; // 报错</code></pre><p>严格模式下，删除一个不可删除的属性，会报错:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　delete Object.prototype; // 报错</code></pre><p><strong>3.6 重名错误</strong><br>严格模式新增了一些语法错误:<br> （1）对象不能有重名的属性<br>正常模式下，如果对象有多个重名属性，最后赋值的那个属性会覆盖前面的值<br>严格模式下，这属于语法错误:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　var o = {
+　　　　p: 1,
+　　　　p: 2
+　　}; // 语法错误</code></pre><p> （2）函数不能有重名的参数<br>正常模式下，如果函数有多个重名的参数，可以用arguments[i]读取<br>严格模式下，这属于语法错误:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　function f(a, a, b) { // 语法错误
+　　　　return ;
+　　}</code></pre><p><strong>3.7 禁止八进制表示法</strong><br>正常模式下，整数的第一位如果是0，表示这是八进制数，比如0100等于十进制的64<br>严格模式禁止这种表示法，整数第一位为0，将报错:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　var n = 0100; // 语法错误</code></pre><p><strong>3.8 arguments对象的限制</strong><br>arguments是函数的参数对象，严格模式对它的使用做了限制:<br> （1）不允许对arguments赋值</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　arguments++; // 语法错误
+　　var obj = { set p(arguments) { } }; // 语法错误
+　　try { } catch (arguments) { } // 语法错误
+　　function arguments() { } // 语法错误
+　　var f = new Function(&quot;arguments&quot;, &quot;&#39;use strict&#39;; return 17;&quot;); // 语法错误</code></pre><p> （2）arguments不再追踪参数的变化</p>
+<pre><code>　　function f(a) {
+　　　　a = 2;
+　　　　return [a, arguments[0]];
+　　}
+
+　　f(1); // 正常模式为[2,2]
+　　
+ function f(a) {
+　　　　&quot;use strict&quot;;
+
+　　　　a = 2;
+　　　　return [a, arguments[0]];
+　　}
+　　f(1); // 严格模式为[2,1]</code></pre><p> （3）禁止使用arguments.callee<br>这意味着，你无法在匿名函数内部调用自身了:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　var f = function() { return arguments.callee; };
+　　f(); // 报错</code></pre><p><strong>3.9 函数必须声明在顶层</strong><br>将来Javascript的新版本会引入”块级作用域”，为了与新版本接轨，严格模式只允许在全局作用域或函数作用域的顶层声明函数，也就是说，不允许在非函数的代码块内声明函数:</p>
+<pre><code>　　&quot;use strict&quot;;
+
+　　if (true) {
+　　　　function f() { } // 语法错误
+　　}
+
+　　for (var i = 0; i &lt; 5; i++) {
+　　　　function f2() { } // 语法错误
+　　}</code></pre><p><strong>3.10 保留字</strong><br>为了向将来Javascript的新版本过渡，严格模式新增了一些保留字：implements, interface, let, package, private, protected, public, static, yield使用这些词作为变量名将会报错:</p>
+<pre><code>　　function package(protected) { // 语法错误
+　　　　&quot;use strict&quot;;
+
+　　　　var implements; // 语法错误
+　　}</code></pre><p>此外，ECMAscript第五版本身还规定了另一些保留字（class, enum, export, extends, import, super），以及各大浏览器自行增加的const保留字，也是不能作为变量名的</p>
+</li>
+</ol>
+<ol start="4">
+<li><strong>use strict的优点：</strong><ul>
+<li>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为</li>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全</li>
+<li>提高编译器效率，增加运行速度</li>
+<li>为未来新版本的Javascript做好铺垫</li>
+</ul>
+</li>
+</ol>
+<p>注：经过测试 IE6,7,8,9 均不支持严格模式</p>
+<ol start="5">
+<li><strong>use strict的缺点：</strong><br>现在网站的 JS 都会进行压缩，一些文件用了严格模式，而另一些没有；这时这些本来是严格模式的文件，被 merge 后，这个串就到了文件的中间，不仅没有指示严格模式，反而在压缩后浪费了字节</li>
+</ol>
+<h1 id="请实现一个遍历至-100-的-for-loop-循环，在能被-3-整除时输出-“fizz”，在能被-5-整除时输出-“buzz”，在能同时被-3-和-5-整除时输出-“fizzbuzz”"><a href="#请实现一个遍历至-100-的-for-loop-循环，在能被-3-整除时输出-“fizz”，在能被-5-整除时输出-“buzz”，在能同时被-3-和-5-整除时输出-“fizzbuzz”" class="headerlink" title="请实现一个遍历至 100 的 for loop 循环，在能被 3 整除时输出 “fizz”，在能被 5 整除时输出 “buzz”，在能同时被 3 和 5 整除时输出 “fizzbuzz”"></a>请实现一个遍历至 <code>100</code> 的 for loop 循环，在能被 <code>3</code> 整除时输出 <strong>“fizz”</strong>，在能被 <code>5</code> 整除时输出 <strong>“buzz”</strong>，在能同时被 <code>3</code> 和 <code>5</code> 整除时输出 <strong>“fizzbuzz”</strong></h1><pre><code>for (let i = 0; i &lt;= 100; i++) {
+     if (i % 15 == 0) {
+      console.log(&#39;fizzbuzz&#39;)
+     }else if (i % 3 == 0) {
+          console.log(&#39;fizz&#39;)
+         }else if (i % 5 == 0) {
+              console.log(&#39;buzz&#39;)
+     }else {
+         consoloe.log(i)
+     }
+}</code></pre><h1 id="为何通常会认为保留网站现有的全局作用域-global-scope-不去改变它，是较好的选择？"><a href="#为何通常会认为保留网站现有的全局作用域-global-scope-不去改变它，是较好的选择？" class="headerlink" title="为何通常会认为保留网站现有的全局作用域 (global scope) 不去改变它，是较好的选择？"></a>为何通常会认为保留网站现有的全局作用域 (global scope) 不去改变它，是较好的选择？</h1><p>  <strong>尽量少在全局作用域定义变量，目的:</strong></p>
+<ol>
+<li>减少名称冲突</li>
+<li>利于模块化</li>
+</ol>
+<p>比如<code>alert</code>就是一个全局的变量，如果你有下面的代码就会把它覆盖了：</p>
+<pre><code>alert=function(){
+   //code
+}</code></pre><h1 id="为何你会使用-load-之类的事件-event-？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？"><a href="#为何你会使用-load-之类的事件-event-？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？" class="headerlink" title="为何你会使用 load 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？"></a>为何你会使用 load 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？</h1><h1 id="请解释什么是单页应用-single-page-app-以及如何使其对搜索引擎友好-SEO-friendly"><a href="#请解释什么是单页应用-single-page-app-以及如何使其对搜索引擎友好-SEO-friendly" class="headerlink" title="请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)"></a>请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)</h1></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2019-12-30 10:10:10',
