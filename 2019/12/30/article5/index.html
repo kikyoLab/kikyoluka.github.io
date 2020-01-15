@@ -925,7 +925,97 @@ $(document).load(function() {
 <p>比如<code>alert</code>就是一个全局的变量，如果你有下面的代码就会把它覆盖了：</p>
 <pre><code>alert=function(){
    //code
-}</code></pre><h1 id="为何你会使用-load-之类的事件-event-？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？"><a href="#为何你会使用-load-之类的事件-event-？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？" class="headerlink" title="为何你会使用 load 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？"></a>为何你会使用 load 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？</h1><h1 id="请解释什么是单页应用-single-page-app-以及如何使其对搜索引擎友好-SEO-friendly"><a href="#请解释什么是单页应用-single-page-app-以及如何使其对搜索引擎友好-SEO-friendly" class="headerlink" title="请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)"></a>请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)</h1></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+}</code></pre><h1 id="为何你会使用-load-之类的事件-event-？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？"><a href="#为何你会使用-load-之类的事件-event-？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？" class="headerlink" title="为何你会使用 load 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？"></a>为何你会使用 load 之类的事件 (event)？此事件有缺点吗？你是否知道其他替代品，以及为何使用它们？</h1><h1 id="请解释什么是单页应用-single-page-app-以及如何使其对搜索引擎友好-SEO-friendly"><a href="#请解释什么是单页应用-single-page-app-以及如何使其对搜索引擎友好-SEO-friendly" class="headerlink" title="请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)"></a>请解释什么是单页应用 (single page app), 以及如何使其对搜索引擎友好 (SEO-friendly)</h1><p><strong>单页应用</strong>（single-page application，缩写<strong>SPA</strong>）SPA是一种网络应用程序(WebApp)模型；在这个模型中，通过动态地重写页面的部分与用户交互，避免了过多的数据交换，而非传统的从服务器重新加载整个新页面，这种方法避免了页面之间切换打断用户体验，使应用程序更像一个桌面应用程序.<br>在单页应用中，所有必要的代码HTML、JavaScript和CSS都通过单个页面的加载而检索,或者根据需要（通常是为响应用户操作）动态装载适当的资源并添加到页面</p>
+<p><strong>1. SPA的优点</strong><br>基本上前后端分离的优点它都有，另外还有以下的一些优点:<br>  (1)页面之间的切换非常快<br>  (2)一定程度上减少了后端服务器的压力（不用管页面逻辑和渲染）<br>  (3)后端程序只需要提供API，完全不用管客户端到底是Web界面还是手机等</p>
+<p><strong>2. SPA的缺点</strong><br>  (1)首屏打开速度很慢，因为用户首次加载需要先下载SPA框架及应用程序的代码，然后再渲染页面<br>  (2)不利于SEO</p>
+<p><strong>SEO（Search Engine Optimization）</strong>：是一种通过了解搜索引擎的运作规则（如何抓取网站页面，如何索引以及如何根据特定的关键字展现搜索结果排序等）来调整网站，以提高该网站在搜索引擎中某些关键词的搜索结果排名</p>
+<p>SPA不利于SEO，因为就目前而言，部分搜索引擎如Google、bing等，它们的爬虫虽然已经支持执行JS甚至是通过AJAX获取数据了，但是对于异步数据的支持也还不足；并且有一些搜索引擎还不支持执行JS和通过AJAX获取数据，那就更不用提SEO了</p>
+<p><strong>3. SPA如何对SEO友好</strong></p>
+<ul>
+<li><p>使用SSR等后端渲染技术</p>
+</li>
+<li><p>对当前SPA进行SEO优化:<br>(1)注重TDK的写法<br>既然页面单一，那么就更需要注重网站标题、关键词和描述的写法。标题上来说，要简单明确，包含主要关键词，一句话能概括全文;描述上来讲，一句话活一小段文字提炼出文章的精髓，内容比标题更加详细;关键词，用绝对的与内容相关的词语，多个关键词用逗号分开</p>
+<br />
+
+<p>(2)外链锚文本的多样化<br>在外链建设上，切忌内容单一，这样很容易造成网站的过度优化，而我们都知道，网站的过度优化对SEO而言是不利的</p>
+<br />
+
+<p>(3)网站标签的运用<br>合理的运用网站标签可以让搜索引擎更好的理解网站的层次内容，比如h标签，strong标签等等</p>
+<br />
+
+<p>(4)符合国际标准<br>这里所说的符合国际标准指的是告诉搜索引擎我的网站符合W3C标准，对任何浏览器都是兼容的</p>
+<br />
+
+<p>(5)代码优化<br>CSS和JS的优化，尽可能的使用外部导入，从而让网页代码更加简洁，能用CSS就尽量不用JS，毕竟JS对于搜索引擎而言并不友好</p>
+<br />
+
+<p>(6)图片的优化</p>
+<br />
+
+<p>(7)合理设置锚点<br>有一些单页面为了展示很多产品特点，页面会拉的很长，不利于用户查看，用户体验并不好，如果在单页面网站上设置合理的锚点，用户只需要点击一下快速达到想要看到的内容区域</p>
+<br />
+
+<p>(8)避免全是图片展示<br>如果单页面网站为了提升视觉效果从而更多的使用图片，那么就会造成网站文字内容过少，不利于搜索引擎对网站的抓取和索引</p>
+<br />
+
+<p>(9)内容为王<br>之前我们就举过百度百科的例子，而作为单页面网站来讲，将用户所有的需求点尽可能完整的展现出来，从而解决用户的烦恼才是单页面网站立足的关键</p>
+</li>
+</ul>
+<h1 id="你使用过-Promises-及其-polyfills-吗-请写出-Promise-的基本用法（ES6）"><a href="#你使用过-Promises-及其-polyfills-吗-请写出-Promise-的基本用法（ES6）" class="headerlink" title="你使用过 Promises 及其 polyfills 吗? 请写出 Promise 的基本用法（ES6）"></a>你使用过 Promises 及其 polyfills 吗? 请写出 Promise 的基本用法（ES6）</h1><p>Polyfills的意思为：<strong>用于实现浏览器并不支持的原生API的代码</strong></p>
+<p>Promise的核心思想是<strong>如果数据就绪(promised)，那么(then)做点什么</strong>.</p>
+<p>下文是一个promise实例:</p>
+<pre><code>const promise = new Promise(function(resolve, reject) {
+  // ... some code
+
+  if (/* 异步操作成功 */){
+    resolve(value);
+  } else {
+    reject(error);
+  }
+});</code></pre><p>Promise构造函数接受一个函数作为参数，该函数的两个参数分别是resolve和reject</p>
+<p><strong>resolve函数的作用是</strong>：将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去</p>
+<p><strong>reject函数的作用是</strong>：将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为rejected）， 在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去</p>
+<p>Promise实例生成以后，可以用then方法分别指定resolved状态和rejected状态的回调函数</p>
+<pre><code>promise.then(function(value) {
+  // success
+}, function(error) {
+  // failure
+});</code></pre><p>下面是一个<code>Promise</code>对象的简单例子:</p>
+<pre><code class="javascript">function timeout(ms) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(resolve, ms, &#39;done&#39;);
+  });
+}
+
+timeout(100).then((value) =&gt; {
+  console.log(value);
+});</code></pre>
+<p>上面代码中，<code>timeout</code>方法返回一个<code>Promise</code>实例，表示一段时间以后才会发生的结果。过了指定的时间（<code>ms</code>参数）以后，<code>Promise</code>实例的状态变为<code>resolved</code>，就会触发<code>then</code>方法绑定的回调函数</p>
+<h1 id="使用-Promises-而非回调-callbacks-优缺点是什么？"><a href="#使用-Promises-而非回调-callbacks-优缺点是什么？" class="headerlink" title="使用 Promises 而非回调 (callbacks) 优缺点是什么？"></a>使用 Promises 而非回调 (callbacks) 优缺点是什么？</h1><p>相比于 callback<br>Promise 具有更易读的代码组织形式（将有依赖的异步操作使用链式结构组织起来）；更好的异常处理方式（无需为每个异步操作添加异常处理，只需在调用 Promise 的末尾添加上一个<code>catch</code>方法捕获异常即可）；以及异步操作并行处理的能力（<code>Promise.all()</code>）等优点。</p>
+<h1 id="使用一种可以编译成-JavaScript-的语言来写-JavaScript-代码有哪些优缺点？"><a href="#使用一种可以编译成-JavaScript-的语言来写-JavaScript-代码有哪些优缺点？" class="headerlink" title="使用一种可以编译成 JavaScript 的语言来写 JavaScript 代码有哪些优缺点？"></a>使用一种可以编译成 JavaScript 的语言来写 JavaScript 代码有哪些优缺点？</h1><p>优点：<br>（1）编写的过程中的代码应该是写法简洁，清晰<br>（2）可读性好</p>
+<p>缺点：在运行之前需要一定时间进行代码转换</p>
+<h1 id="你会使用怎样的语言结构来遍历对象属性-object-properties-和数组内容？"><a href="#你会使用怎样的语言结构来遍历对象属性-object-properties-和数组内容？" class="headerlink" title="你会使用怎样的语言结构来遍历对象属性 (object properties) 和数组内容？"></a>你会使用怎样的语言结构来遍历对象属性 (object properties) 和数组内容？</h1><p>（1）for in 语句<br>（2）一般for循环<br>（3）数组forEach方法</p>
+<h1 id="可变-mutable-和不变-immutable-对象的区别"><a href="#可变-mutable-和不变-immutable-对象的区别" class="headerlink" title="可变 (mutable) 和不变 (immutable) 对象的区别"></a>可变 (mutable) 和不变 (immutable) 对象的区别</h1><p><strong>可变（Mutable）对象：</strong><br>  在JavaScript中，对象是引用类型的数据，其优点在于频繁地修改对象时都是在原对象的基础上修改，并不需要重新创建，这样就可以有效地利用内存，不会造成内存空间的浪费</p>
+<p><strong>不变（Immutable）对象：</strong><br>  每次修改一个immutable对象时都会创建一个新的不可变对象，在新对象上的操作不会影响到原对象的数据</p>
+<p><strong>区别：</strong><br>Immutable对象在修改数据时并不会复制一整份数据，而是将变化的节点与未变化的节点的父子关系转移到一个新节点上<br>而Mutable在复制时是“全量”，Immutable对象需要通过set和get来对数据进行读和写</p>
+<p><strong>举出 JavaScript 中一个不变性对象 (immutable object) 的例子</strong><br>例如：String， number就是不可变对象</p>
+<p><strong>不变性 (immutability) 优缺点</strong><br><strong>优点:</strong><br> (1)降低 Mutable 带来的复杂度<br>  引用赋值虽然可以节省内存，但当应用复杂之后，可变状态往往会变成噩梦，通常一般的做法是使用shallowCopy或者deepCopy来避免被修改，但这样造成了CPU和内存的消耗，不过Immulate可以很好地解决这些问题</p>
+<p> (2)节省内存空间<br>  上面提到了结构共享，Immutable.js 使用这种方式会尽量复用内存，甚至以前使用的对象也可以再次被复用。没有被引用的对象会被垃圾回收</p>
+<p> (3)Undo/Redo，Copy/Paste，随意穿越！<br>  因为每次数据都是不一样的，只要把这些数据放到一个数组里储存起来，想回退到哪里就拿出对应数据即可，很容易开发出撤销重做这种功能</p>
+<p> (4)拥抱函数式编程<br>  Immutable（持久化数据结构）本身就是函数式编程中的概念。函数式编程关心数据的映射，命令式编程关心解决问题的步骤，纯函数式编程比面向对象更适用于前端开发。因为只要输入一致，输出必然一致，这样开发的组件更易于调试和组装</p>
+<p><strong>缺点:</strong>容易与原生对象混</p>
+<p><strong>如何用你自己的代码来实现不变性 (immutability)</strong><br>例如定义一个不可变更，不可枚举的变量</p>
+<h1 id="请解释同步-synchronous-和异步-asynchronous-函数的区别"><a href="#请解释同步-synchronous-和异步-asynchronous-函数的区别" class="headerlink" title="请解释同步 (synchronous) 和异步 (asynchronous) 函数的区别"></a>请解释同步 (synchronous) 和异步 (asynchronous) 函数的区别</h1><ul>
+<li><p>同步调用，在发起一个函数或方法调用时，没有得到结果之前，该调用就不返回，直到返回结果</p>
+<br />
+</li>
+<li><p>异步调用的概念和同步相对，在一个异步调用发起后，被调用者立即返回给调用者，但调用者不能立刻得到结果，被调用者在实际处理这个调用的请求完成后，通过状态、通知或回调等方式来通知调用者请求处理的结果</p>
+<br />
+
+</li>
+</ul>
+<p>简单地说，同步就是发出一个请求后什么事都不做，一直等待请求返回后才会继续做事；异步就是发出请求后继续去做其他事，这个请求处理完成后会通知你，这时候就可以处理这个回应了</p>
+</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2019-12-30 10:10:10',
