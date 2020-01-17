@@ -1536,7 +1536,56 @@ setTimeout(function() {
 </li>
 </ol>
 <p>队列定义了两个方法：shift、unshift</p>
-</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+<h1 id="38-function-foo-与-var-foo-function-用法的区别"><a href="#38-function-foo-与-var-foo-function-用法的区别" class="headerlink" title="38-function foo() {} 与 var foo = function() {}用法的区别"></a>38-function foo() {} 与 var foo = function() {}用法的区别</h1><p><code>function foo(){}</code>为函数声明，进行了变量提升( 编译后函数声明和他的赋值都会被提前),函数声明过程在整个程序执行之前的预处理就完成了，所以只要处于同一个作用域，就可以访问到，即使在定义之前调用它也可以</p>
+<p>但是<code>var foo = function(){}</code>只是声明了一个变量，然后进行赋值操作，变量会提升但是赋值不会提升；因为匿名函数只有在被调用时才被初始化</p>
+<p><strong>简单的说，如果我们使用匿名函数：</strong></p>
+<pre><code>var FUNCTION_NAME = function() { 
+  /* FUNCTION_BODY */
+}; </code></pre><p>这种方式，编译后变量声明FUNCTION_NAME 会“被提前”了，但是他的赋值（也就是FUNCTION_BODY）并不会被提前；也就是，匿名函数只有在被调用时才被初始化.</p>
+<p><strong>如果我们使用：</strong></p>
+<pre><code>function FUNCTION_NAME () 
+{ /* FUNCTION_BODY */}; </code></pre><p>这种方式， 编译后函数声明和他的赋值都会被提前；也就是说函数声明过程在整个程序执行之前的预处理就完成了，所以只要处于同一个作用域，就可以访问到，即使在定义之前调用它也可以.</p>
+<p><strong>请先看一个例子：</strong></p>
+<pre><code>function hereOrThere() { //function statement
+  return &#39;here&#39;;
+}
+
+alert(hereOrThere()); // alerts &#39;there&#39;
+
+function hereOrThere() {
+  return &#39;there&#39;;
+}</code></pre><p>我们会发现<code>alert(hereOrThere)</code>语句执行时<code>会alert(&#39;there&#39;)！</code>这里的行为其实非常出乎意料，主要原因是JavaScript 函数声明的“提前”行为，简而言之，就是Javascript允许我们在变量和函数被声明之前使用它们，而第二个定义覆盖了第一种定义.</p>
+<p><strong>换句话说，上述代码编译之后相当于：</strong></p>
+<pre><code>function hereOrThere() { //function statement
+  return &#39;here&#39;;
+}
+
+function hereOrThere() {//申明前置了，但因为这里的申明和赋值在一起，所以一起前置
+  return &#39;there&#39;;
+}
+
+alert(hereOrThere()); // alerts &#39;there&#39;</code></pre><p>强烈推荐阅读下面文章，<a href="https://link.zhihu.com/?target=http%3A//www.bootcss.com/article/variable-and-function-hoisting-in-javascript/">JavaScript 中对变量和函数声明的“提前（hoist）”</a>.</p>
+<p><strong>再看下面一个例子：</strong></p>
+<pre><code>var hereOrThere = function() { // function expression
+  return &#39;here&#39;;
+};
+
+alert(hereOrThere()); // alerts &#39;here&#39;
+
+hereOrThere = function() {
+  return &#39;there&#39;;
+};</code></pre><p>这里就是我们期待的behavior，这段程序编译之后相当于：</p>
+<pre><code>var hereOrThere；//申明前置了
+
+hereOrThere = function() { // function expression
+  return &#39;here&#39;;
+};
+
+alert(hereOrThere()); // alerts &#39;here&#39;
+
+hereOrThere = function() {
+  return &#39;there&#39;;
+};</code></pre></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2019-12-30 10:10:10',
