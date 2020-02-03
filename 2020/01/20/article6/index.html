@@ -11,6 +11,7 @@
 <li>ticks</li>
 <li>CPU限额</li>
 <li>单位</li>
+<li>移动</li>
 <li>区块与房间</li>
 <li>游戏等级</li>
 <li>交易 </li>
@@ -29,7 +30,45 @@
 <p>除此之外，你的本地服务器和其他的私人服务器没有20 cpu 限制的规定，私人服务器一般都有自己的规定</p>
 <p>如果为了限制恶意玩家就把所有玩家的额度都订的特别低，这么做是不是会引起其他玩家的不满呢？为此，官方推出了cpu资源桶的概念，当你的代码运行时间低于你的 cpu 限额时，你没有用的 cpu 资源就会被存入资源桶里，而当你的代码运行时间因为某些原因飙升而超过限额时，服务器会自动 从你的资源桶里取出每次最多500点的 cpu 额度来应对突然的峰值(资源桶最多可以存放10,000点 cpu 资源):<br><img src="https://upload-images.jianshu.io/upload_images/13523736-9a202ca14dab2a05.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/430/format/webp" alt="img"></p>
 <h3 id="单位"><a href="#单位" class="headerlink" title="单位"></a><strong>单位</strong></h3><p>每个即时战略游戏都有单位，这个游戏同样，不同的是，游戏中只有一个单位，被称为creep<br><img src="https://upload-images.jianshu.io/upload_images/13523736-5f73bd4d277f1570.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/401/format/webp" alt="img"><br>screeps这个游戏没有兵种的区分，而是给你提供了几个最基本的部件，例如WORK、MOVE、CARRY、ATTACK等等，具体可以参考<a href="https://screeps-cn.github.io/api/#Creep" target="_blank" rel="noopener">官方api文档-creep</a>，你可以在生成一个单位时给其指定身体的具体部件，最多五十个；基于此，你可以根据自己的想法创造出无数种单位，例如一个工作效率超高，但是携带量很小的矿工，或者任何地形都跑的很快的侦察兵，亦或是防御厚重又能进行高伤害范围工具的重甲兵，全凭你的想象<br>在游戏中，您可以点击一个creep来查看他的身体组成部分:<br><img src="https://upload-images.jianshu.io/upload_images/13523736-04ca1f118ea68bf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/205/format/webp" alt="img"></p>
-<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a><strong>移动</strong></h3></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a><strong>移动</strong></h3><p>在这个游戏里，creep的最快移动速度为1格/ticks</p>
+<p>有一个身体组件叫做MOVE，每一个MOVE组件都可以降低2点“疲劳值”，而其他所有的身体组件都会增加疲劳值；一旦一个creep的疲劳值大于0，那他的移动速度就会降低；这个游戏中也没有一次移动半格的设定，所以向下取整，你的creep移动速度会直接跌至1格/2ticks；所以，无论何时都要记得添加MOVE组件将你creep的移动速度保持在最快(具体的设计可以参考官方给出的这篇文章<a href="https://docs.screeps.com/creeps.html#Creeps-Skills" target="_blank" rel="noopener">ScreepsDoc-creep</a>)</p>
+<h3 id="区块与房间"><a href="#区块与房间" class="headerlink" title="区块与房间"></a><strong>区块与房间</strong></h3><p>这个游戏中的基本空间单位被称为room，即房间；每个房间都有出口和相邻的房间连接，单位可以自由的出入房间:<br><img src="https://upload-images.jianshu.io/upload_images/13523736-2d7ad1e71f8a0d32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/447/format/webp" alt="img"></p>
+<p>房间由平地，墙壁和沼泽构成，以及一些特殊结构，如下：</p>
+<table>
+  <tr>
+    <td align="right">结构名称</td>
+    <td align="left">示例</td>
+    <td align="left">作用</td>
+  </tr>
+  <tr>
+    <td align="right">资源点</td>
+    <td align="left"><img src="https://upload-images.jianshu.io/upload_images/13523736-c1892de025237c8f.png?imageMogr2/auto-orient/strip|imageView2/2/w/65/format/webp" /></td>
+    <td align="left">基本矿藏，一个房间随机生成 0 ~ 3 个</td>
+  </tr>
+  <tr>
+    <td align="right">房间控制器</td>
+    <td align="left"><img src="https://upload-images.jianshu.io/upload_images/13523736-7b469fdedbb298b2.png?imageMogr2/auto-orient/strip|imageView2/2/w/64/format/webp" /></td>
+    <td align="left">房间的核心枢纽，控制它就控制了房间</td>
+  </tr>
+  <tr>
+    <td align="right">特种元素</td>
+    <td align="left"><img src="https://upload-images.jianshu.io/upload_images/13523736-3eb7e70f62d5d5ec.png?imageMogr2/auto-orient/strip|imageView2/2/w/64/format/webp" /></td>
+    <td align="left">每个房间一个，可以进行交易或者强化单位</td>
+  </tr>
+</table>
+
+<br />
+
+<p>游戏中将9 * 9的房间组成的方块称为一个区块，游戏地图的大小是会随机拓展的，玩家数量增加时服务器会开辟新的区块，玩家数量不足时会销毁没有人的区块，下面红色的是一个正常的区块，蓝色的是一个即将启用的区块：<br><img src="https://upload-images.jianshu.io/upload_images/13523736-a4f0e41e01a7c3a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/792/format/webp" alt="img"></p>
+<center>区块和区块之间相隔了一条路，这条路上的房间中是不会产生房间控制器、资源点以及特种元素的</center>
+
+<h3 id="游戏等级"><a href="#游戏等级" class="headerlink" title="游戏等级"></a><strong>游戏等级</strong></h3><p>这个游戏共有三个等级:</p>
+<ol>
+<li>房间控制器等级：Room Control Level 简称RCL</li>
+<li>全局控制器等级：Global Control Level 简称GCL</li>
+<li>全局能量等级：Global Power Level 简称GPL</li>
+</ol>
+</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2020-01-20 10:10:10',
