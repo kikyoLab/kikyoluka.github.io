@@ -1,5 +1,79 @@
-<!DOCTYPE html><html lang="ZH-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="author" content="琉花"><meta name="copyright" content="琉花"><meta name="og:image" content="/images/avatar.png"><meta name="og:type" content="website"><meta name="og:site_name" content="琉花"><meta name="og:url" content="kikyoluka.cn"><meta name="og：title" content="琉花"><meta name="theme-color" content="#b854d4" /><title>琉花</title><link rel="shortcut icon" href="/images/favicon.jpg" type="image/x-icon"><link rel="stylesheet" href="/css/index.css?version=2.0.0"><link rel="stylesheet" href="/font/fontello.css?version=2.0.0"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Mono|Noto+Serif+SC&amp;amp;display=swap"><link rel="canonical" href="//kikyoluka.cn"><link rel="dns-prefetch" href="//cdn.jsdelivr.net"><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><script src="/lib/gitalk/gitalk.min.js"></script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="layout"><header><div class="header"><div class="mobile-bg" style="background-image:url(/images/mobile.png);"></div><h1 class="title">琉花</h1><h2 class="subtitle">行至朝雾里 坠入暮云间</h2><nav class="menu"><a class="menu-item pjax-main-link" href="/"><li><i class="icon-index"></i><span>首页</span></li></a><a class="menu-item pjax-main-link" href="/archives/"><li><i class="icon-archives"></i><span>归档</span></li></a><a class="menu-item pjax-main-link" href="/categories/"><li><i class="icon-categories"></i><span>分类</span></li></a><a class="menu-item pjax-main-link" href="/tags/"><li><i class="icon-tags"></i><span>标签</span></li></a><a class="menu-item pjax-main-link" href="/books/"><li><i class="icon-books"></i><span>书单</span></li></a><a class="menu-item pjax-main-link" href="/inspirations/"><li><i class="icon-inspiration"></i><span>灵感</span></li></a><a class="menu-item pjax-main-link" href="/friends/"><li><i class="icon-friends"></i><span>友链</span></li></a><a class="menu-item pjax-main-link" href="/about/"><li><i class="icon-about"></i><span>关于</span></li></a></nav></div></header><main><div class="main-wrapper"></div><div class="pjax-main-page"><div class="post"><article class="post-article"><div class="post-header"><img class="default-image" src="/images/postDefaultImage%20.png" style="opacity:0;"/><img class="post-image" src="https://i.loli.net/2020/02/07/6q1BLbNjSdIkMg2.jpg"/><div class="post-head"><div class="post-title-wrapper"><h1 class="post-title">Screeps之自动化基地(下)</h1><span class="post-image-source">pixiv</span></div><div class="post-meta"><span class="post-date"><i class="icon-calendar"></i><span class="date timeago" datetime="2020-02-02T02:10:10.000Z"></span></span><span class="post-hot"><i class="icon-fire"></i><span class="leancloud_visitors" id="/2020/02/02/article8/" data-flag-title="Screeps之自动化基地(下)">热度<span class="leancloud-visitors-count">0</span>℃</span></span><span class="post-tags"><i class="icon-tag"></i><span class="tag">自言自语</span></span><span class="post-categories"><i class="icon-bookmark-empty"></i><span class="category">文档</span></span></div></div></div><div class="post-content"><div class="markdown"><p>上文我们已经完成了房间的整体布局，现在就可以开始自动化部署了</p>
-</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+<!DOCTYPE html><html lang="ZH-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="author" content="琉花"><meta name="copyright" content="琉花"><meta name="og:image" content="/images/avatar.png"><meta name="og:type" content="website"><meta name="og:site_name" content="琉花"><meta name="og:url" content="kikyoluka.cn"><meta name="og：title" content="琉花"><meta name="theme-color" content="#b854d4" /><title>琉花</title><link rel="shortcut icon" href="/images/favicon.jpg" type="image/x-icon"><link rel="stylesheet" href="/css/index.css?version=2.0.0"><link rel="stylesheet" href="/font/fontello.css?version=2.0.0"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Mono|Noto+Serif+SC&amp;amp;display=swap"><link rel="canonical" href="//kikyoluka.cn"><link rel="dns-prefetch" href="//cdn.jsdelivr.net"><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><script src="/lib/gitalk/gitalk.min.js"></script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="layout"><header><div class="header"><div class="mobile-bg" style="background-image:url(/images/mobile.png);"></div><h1 class="title">琉花</h1><h2 class="subtitle">行至朝雾里 坠入暮云间</h2><nav class="menu"><a class="menu-item pjax-main-link" href="/"><li><i class="icon-index"></i><span>首页</span></li></a><a class="menu-item pjax-main-link" href="/archives/"><li><i class="icon-archives"></i><span>归档</span></li></a><a class="menu-item pjax-main-link" href="/categories/"><li><i class="icon-categories"></i><span>分类</span></li></a><a class="menu-item pjax-main-link" href="/tags/"><li><i class="icon-tags"></i><span>标签</span></li></a><a class="menu-item pjax-main-link" href="/books/"><li><i class="icon-books"></i><span>书单</span></li></a><a class="menu-item pjax-main-link" href="/inspirations/"><li><i class="icon-inspiration"></i><span>灵感</span></li></a><a class="menu-item pjax-main-link" href="/friends/"><li><i class="icon-friends"></i><span>友链</span></li></a><a class="menu-item pjax-main-link" href="/about/"><li><i class="icon-about"></i><span>关于</span></li></a></nav></div></header><main><div class="main-wrapper"></div><div class="pjax-main-page"><div class="post"><article class="post-article"><div class="post-header"><img class="default-image" src="/images/postDefaultImage%20.png" style="opacity:0;"/><img class="post-image" src="https://i.loli.net/2020/02/07/6q1BLbNjSdIkMg2.jpg"/><div class="post-head"><div class="post-title-wrapper"><h1 class="post-title">Screeps之自动化基地(下)</h1><span class="post-image-source">pixiv</span></div><div class="post-meta"><span class="post-date"><i class="icon-calendar"></i><span class="date timeago" datetime="2020-02-02T02:10:10.000Z"></span></span><span class="post-hot"><i class="icon-fire"></i><span class="leancloud_visitors" id="/2020/02/02/article8/" data-flag-title="Screeps之自动化基地(下)">热度<span class="leancloud-visitors-count">0</span>℃</span></span><span class="post-tags"><i class="icon-tag"></i><span class="tag">自言自语</span></span><span class="post-categories"><i class="icon-bookmark-empty"></i><span class="category">文档</span></span></div></div></div><div class="post-content"><div class="markdown"><p>上文我们已经完成了房间的整体布局，选择好Spawn点后你的基地应该就是这样了:<br><img src="https://i.loli.net/2020/02/12/FZuqEctTRSYlPJC.png" alt="img"><br>现在差不多就可以开始自动化部署了</p>
+<h3 id="挖矿creep"><a href="#挖矿creep" class="headerlink" title="挖矿creep"></a>挖矿creep</h3><p>首先呢，肯定是要先搞我们的挖矿单位了~<br>使用Spawn孵化单位是需要消耗能量的，每一个部件消耗的能量都不同，具体我们可以参考官方文档中的：<br><img src="https://i.loli.net/2020/02/12/6XnStJucA7hKgY4.png" alt="img"><br>因为Spawn只能储存300能量，所以开局建造的挖矿机能量消耗不能超过这个限度，而挖矿单位它需要WORK部件来挖矿，CARRY部件来存储能量，MOVE部件来进行移动. </p>
+<p>于是我们就可以计划建一个<code>[WORK,WORK,CARRY,MOVE]</code>的快速挖掘单位或者是<code>[WORK,CARRY,CARRY,MOVE,MOVE]</code>的高容量单位:</p>
+<ol>
+<li><p>如果你是在网页端进行游戏的话，就可以点开左下角的script然后新建role.harvester的module文件:<br><img src="https://i.loli.net/2020/02/12/rBcbj2ADvJ9HVsR.png" alt="img"></p>
+</li>
+<li><p>如果你是使用steam进行游戏的话，可以使用自己喜欢的编辑器，比如vscode等等，然后点开左下角的script &gt; open local file，再使用编辑器打开default文件夹，新建一个role.harvester.js文件:</p>
+<pre><code>//role.harvester.js
+const roleHarvester = {
+/** @param {Creep} creep **/
+collect: function (creep) {
+
+ //定义房间内的能量矿
+ var sources = creep.room.find(FIND_SOURCES);
+
+ //如果第一个能量矿不在creep单位的采集范围内，将creep移动到第一个能量矿的采集范围内
+ if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+   creep.moveTo(sources[0]);
+ }
+}
+}
+module.exports = roleHarvester;</code></pre></li>
+</ol>
+<p>然后在main.js文件中进行模块的导入:</p>
+<pre><code>//main.js
+//导入role.harvester模块
+const roleHarvester = require(&#39;role.harvester&#39;);
+module.exports.loop = function () {
+
+  //在所有creep中查询记忆为harvester的creep单位
+
+    var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
+
+  //如果记忆为harvester的creep单位个人小于1，那就说明没人采矿，自动生成一个采矿creep
+
+    if (harvesters.length &lt; 1) {
+      var newName = &#39;Harvester&#39; + Game.time
+      Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
+        { memory: { role: &#39;harvester&#39; } });
+    }
+
+  //遍历所有creep，如果有记忆为harvester的，执行roleHarvester.collect()进行挖矿
+
+    for (var name in Game.creeps) {
+      var creep = Game.creeps[name];
+      if (creep.memory.role == &#39;harvester&#39;) {
+        roleHarvester.collect(creep);
+      }
+    }
+  }</code></pre><p>到这里，自动挖矿的creep就快完成了，现在我们的creep可以自动生成并寻找第一个能量矿进行挖掘，但是当creep自身存满能量后就开始发呆了，所以我们还需要让creep存满能量后运送回去，然后再回来继续挖:</p>
+<pre><code>//role.harvester.js
+const roleHarvester = {
+  /** @param {Creep} creep **/
+  collect: function (creep) {
+
+    //getFreeCapacity()可以理解为可使用的容量
+    if(creep.store.getFreeCapacity() &gt; 0) {
+
+        //定义房间内的能量矿
+        var sources = creep.room.find(FIND_SOURCES);
+
+        //如果第一个能量矿不在creep单位的采集范围内，将creep移动到第一个能量矿的采集范围内
+        if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(sources[0]);
+        }
+    }
+    else {
+      //如果Spawn1不在creep单位的运输范围内，将creep移动到Spawn1的运输范围内
+        if( creep.transfer(Game.spawns[&#39;Spawn1&#39;], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE ) {
+            creep.moveTo(Game.spawns[&#39;Spawn1&#39;]);
+        }
+    }
+  }
+}
+module.exports = roleHarvester;</code></pre><p>现在，我们的creep挖矿单位就完成了，它可以自动生成挖矿并且运输回基地，当然如果基地的能量满了它就又开始发呆了.<br><img src="https://i.loli.net/2020/02/12/xt57ukDJbO2aXcM.png" alt="img"></p>
+<h3 id="升级creep"><a href="#升级creep" class="headerlink" title="升级creep"></a>升级creep</h3></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2020-02-02 10:10:10',
