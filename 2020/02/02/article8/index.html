@@ -73,7 +73,92 @@ const roleHarvester = {
   }
 }
 module.exports = roleHarvester;</code></pre><p>现在，我们的creep挖矿单位就完成了，它可以自动生成挖矿并且运输回基地，当然如果基地的能量满了它就又开始发呆了.<br><img src="https://i.loli.net/2020/02/12/xt57ukDJbO2aXcM.png" alt="img"></p>
-<h3 id="升级creep"><a href="#升级creep" class="headerlink" title="升级creep"></a>升级creep</h3></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+<h3 id="升级creep"><a href="#升级creep" class="headerlink" title="升级creep"></a>升级creep</h3><ol>
+<li><p>Screeps世界由一个个房间组成，每个可控制的房间都会有一个控制器</p>
+</li>
+<li><p>Creep可使用能量(Energy)对控制器进行升级，控制器的等级称为RCL(Room Control Level)，RCL的高低决定了该房间可使用的设施，当一段时间没有对控制器进行升级时，控制器将会降级，降级后，进度并不会减少，稍后进行升级时，只要进度达标，控制器等级会立即升高</p>
+</li>
+<li><p>已经建造的设施会在RCL等级不足时变为无法使用的状态，显示为红色高亮。当控制器降到0级时，将会失去对该房间的控制</p>
+</li>
+<li><p>对控制器升级消耗的能量值也会计入与用户绑定的GCL(Global Controll Level)的升级进度中，GCL的高低决定着玩家可使用的CPU上限(初始30，每次升级增加10，最高300)以及可控制的房间上限，GCL没有上限RCL最高为8，当控制器达到8级后，每tick对控制器升级消耗的能量上限为15单位，这个限制可以通过矿物强化来增加</p>
+</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/13523736-3e4abe759112b3f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/250/format/webp" alt="img"><br><br /></p>
+<p><strong>所以我们必须保证有creep一直对房间控制器进行能量传输:</strong><br>新建一个role.upgrader.js文件</p>
+<pre><code>//role.upgrader.js
+
+const roleUpgrader = {
+  /** @param {Creep} creep **/
+
+  run: function (creep) {
+
+    //如果creep的能量没满，关闭升级指令
+    if (creep.memory.upgrading &amp;&amp; creep.store[RESOURCE_ENERGY] == 0) {
+      creep.memory.upgrading = false;
+    }
+
+    //如果creep的能量满了，打开升级指令
+    if (!creep.memory.upgrading &amp;&amp; creep.store.getFreeCapacity() == 0) {
+      creep.memory.upgrading = true;
+    }
+
+    //如果升级指令存在，对控制器进行升级，如果不在控制器范围内，移动过去
+    if (creep.memory.upgrading) {
+      if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: &#39;#ffffff&#39; } });
+      }
+    }
+
+    //如果升级指令不存在，找到能量矿进行采集
+    else {
+      var sources = creep.room.find(FIND_SOURCES);
+      if (sources) {
+        if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(sources[1]);
+        }
+      }
+    }
+  }
+}
+module.exports = roleUpgrader;</code></pre><p><strong>在main.js中进行导入:</strong></p>
+<pre><code>//main.js
+
+const roleHarvester = require(&#39;role.harvester&#39;);
+
+//导入我们写好的upgrader模块
+const roleUpgrader = require(&#39;role.upgrader&#39;);
+
+module.exports.loop = function () {
+
+  //在所有creep中查询记忆为harvester的creep单位
+
+    var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
+
+  //在所有creep中查询记忆为upgrader的creep单位
+
+    var upgraders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;upgrader&#39;);
+
+  //如果记忆为upgrader的creep单位个人小于1，那就说明没人升级控制器，自动生成一个
+
+    if (upgraders.length &lt; 1) {
+      var newName = &#39;Upgrader&#39; + Game.time
+      Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
+        { memory: { role: &#39;upgrader&#39; } });
+    }
+
+  //遍历所有creep，根据memory进行任务分配
+
+    for (var name in Game.creeps) {
+      var creep = Game.creeps[name];
+      if (creep.memory.role == &#39;harvester&#39;) {
+        roleHarvester.collect(creep);
+      }
+
+      if(creep.memory.role == &#39;upgrader&#39;){
+        roleUpgrader.run(creep);
+      }
+    }
+  }</code></pre><h3 id="建造creep"><a href="#建造creep" class="headerlink" title="建造creep"></a>建造creep</h3></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2020-02-02 10:10:10',
