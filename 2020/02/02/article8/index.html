@@ -158,7 +158,87 @@ module.exports.loop = function () {
         roleUpgrader.run(creep);
       }
     }
-  }</code></pre><h3 id="建造creep"><a href="#建造creep" class="headerlink" title="建造creep"></a>建造creep</h3></div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+  }</code></pre><h3 id="建造creep"><a href="#建造creep" class="headerlink" title="建造creep"></a>建造creep</h3><p>现在我们已经有负责挖矿和升级控制器的creep了，但是我建造别的建筑物还需要别的creep,新建一个role.builder.js：</p>
+<pre><code>//role.builder.js
+
+const roleBuilder = {
+  /** @param {Creep} creep **/
+  run: function (creep) {
+    if (creep.memory.building &amp;&amp; creep.store[RESOURCE_ENERGY] == 0) {
+      creep.memory.building = false;
+    }
+    if (!creep.memory.building &amp;&amp; creep.store.getFreeCapacity() == 0) {
+      creep.memory.building = true;
+    }
+
+    //满能量的时候进行建造任务
+    if (creep.memory.building) {
+      var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+      if (targets.length) {
+        if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+          creep.moveTo(targets[0], { visualizePathStyle: { stroke: &#39;#ffffff&#39; } });
+        }
+      }
+    }
+    else {
+      var sources = creep.room.find(FIND_SOURCES);
+      if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(sources[0], { visualizePathStyle: { stroke: &#39;#ffaa00&#39; }     });
+      }
+    }
+
+  }
+}
+
+module.exports = roleBuilder;</code></pre><p><strong>然后在main.js里导入:</strong></p>
+<pre><code>//main.js
+
+const roleHarvester = require(&#39;role.harvester&#39;);
+const roleUpgrader = require(&#39;role.upgrader&#39;);
+
+//导入我们写好的builder模块
+const roleBuilder = require(&#39;role.builder&#39;);
+
+module.exports.loop = function () {
+
+  //在所有creep中查询记忆为harvester的creep单位
+
+    var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
+
+  //在所有creep中查询记忆为upgrader的creep单位
+
+    var upgraders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;upgrader&#39;);
+
+  //在所有creep中查询记忆为builder的creep单位
+
+    var builders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;builder&#39;);
+
+  //如果记忆为builder的creep单位个人小于1，那就说明没人建造，自动生成一个
+
+    if (builders.length &lt; 1) {
+      var newName = &#39;Builder&#39; + Game.time
+      Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
+        { memory: { role: &#39;builder&#39; } });
+    }
+
+  //遍历所有creep，根据memory进行任务分配
+
+    for (var name in Game.creeps) {
+      var creep = Game.creeps[name];
+      if (creep.memory.role == &#39;harvester&#39;) {
+        roleHarvester.collect(creep);
+      }
+
+      if(creep.memory.role == &#39;upgrader&#39;){
+        roleUpgrader.run(creep);
+      }
+
+      if(creep.memory.role == &#39;builder&#39;){
+        roleBuilder.run(creep);
+      }
+    }
+  }</code></pre><p>那么到这里，我们就有自动采矿、建造、升级的creep了，当它们死亡后，我们的基地也就会自动生产一个新的来代替，简单的自动化基地就完成了~</p>
+</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
     id: '2020-02-02 10:10:10',
