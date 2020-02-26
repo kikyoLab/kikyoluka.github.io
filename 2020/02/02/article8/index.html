@@ -20,59 +20,60 @@ collect: function (creep) {
 }
 }
 module.exports = roleHarvester;</code></pre></li>
-</ol>
-<p>然后在main.js文件中进行模块的导入:</p>
+<li><p>然后在main.js文件中进行模块的导入:</p>
 <pre><code>//main.js
 //导入role.harvester模块
 const roleHarvester = require(&#39;role.harvester&#39;);
 module.exports.loop = function () {
 
-  //在所有creep中查询记忆为harvester的creep单位
+//在所有creep中查询记忆为harvester的creep单位
 
-    var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
+ var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
 
-  //如果记忆为harvester的creep单位个人小于1，那就说明没人采矿，自动生成一个采矿creep
+//如果记忆为harvester的creep单位个人小于1，那就说明没人采矿，自动生成一个采矿creep
 
-    if (harvesters.length &lt; 1) {
-      var newName = &#39;Harvester&#39; + Game.time
-      Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
-        { memory: { role: &#39;harvester&#39; } });
-    }
+ if (harvesters.length &lt; 1) {
+   var newName = &#39;Harvester&#39; + Game.time
+   Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
+     { memory: { role: &#39;harvester&#39; } });
+ }
 
-  //遍历所有creep，如果有记忆为harvester的，执行roleHarvester.collect()进行挖矿
+//遍历所有creep，如果有记忆为harvester的，执行roleHarvester.collect()进行挖矿
 
-    for (var name in Game.creeps) {
-      var creep = Game.creeps[name];
-      if (creep.memory.role == &#39;harvester&#39;) {
-        roleHarvester.collect(creep);
-      }
-    }
-  }</code></pre><p>到这里，自动挖矿的creep就快完成了，现在我们的creep可以自动生成并寻找第一个能量矿进行挖掘，但是当creep自身存满能量后就开始发呆了，所以我们还需要让creep存满能量后运送回去，然后再回来继续挖:</p>
+ for (var name in Game.creeps) {
+   var creep = Game.creeps[name];
+   if (creep.memory.role == &#39;harvester&#39;) {
+     roleHarvester.collect(creep);
+   }
+ }
+}</code></pre><p>到这里，自动挖矿的creep就快完成了，现在我们的creep可以自动生成并寻找第一个能量矿进行挖掘，但是当creep自身存满能量后就开始发呆了，所以我们还需要让creep存满能量后运送回去，然后再回来继续挖:</p>
 <pre><code>//role.harvester.js
 const roleHarvester = {
-  /** @param {Creep} creep **/
-  collect: function (creep) {
+/** @param {Creep} creep **/
+collect: function (creep) {
 
-    //getFreeCapacity()可以理解为可使用的容量
-    if(creep.store.getFreeCapacity() &gt; 0) {
+ //getFreeCapacity()可以理解为可使用的容量
+ if(creep.store.getFreeCapacity() &gt; 0) {
 
-        //定义房间内的能量矿
-        var sources = creep.room.find(FIND_SOURCES);
+     //定义房间内的能量矿
+     var sources = creep.room.find(FIND_SOURCES);
 
-        //如果第一个能量矿不在creep单位的采集范围内，将creep移动到第一个能量矿的采集范围内
-        if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(sources[0]);
-        }
-    }
-    else {
-      //如果Spawn1不在creep单位的运输范围内，将creep移动到Spawn1的运输范围内
-        if( creep.transfer(Game.spawns[&#39;Spawn1&#39;], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE ) {
-            creep.moveTo(Game.spawns[&#39;Spawn1&#39;]);
-        }
-    }
-  }
+     //如果第一个能量矿不在creep单位的采集范围内，将creep移动到第一个能量矿的采集范围内
+     if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+         creep.moveTo(sources[0]);
+     }
+ }
+ else {
+   //如果Spawn1不在creep单位的运输范围内，将creep移动到Spawn1的运输范围内
+     if( creep.transfer(Game.spawns[&#39;Spawn1&#39;], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE ) {
+         creep.moveTo(Game.spawns[&#39;Spawn1&#39;]);
+     }
+ }
+}
 }
 module.exports = roleHarvester;</code></pre><p>现在，我们的creep挖矿单位就完成了，它可以自动生成挖矿并且运输回基地，当然如果基地的能量满了它就又开始发呆了.<br><img src="https://i.loli.net/2020/02/12/xt57ukDJbO2aXcM.png" alt="img"></p>
+</li>
+</ol>
 <h3 id="升级creep"><a href="#升级creep" class="headerlink" title="升级creep"></a>升级creep</h3><ol>
 <li><p>Screeps世界由一个个房间组成，每个可控制的房间都会有一个控制器</p>
 </li>
@@ -84,160 +85,137 @@ module.exports = roleHarvester;</code></pre><p>现在，我们的creep挖矿单�
 </li>
 </ol>
 <p><img src="https://upload-images.jianshu.io/upload_images/13523736-3e4abe759112b3f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/250/format/webp" alt="img"><br><br /></p>
-<p><strong>所以我们必须保证有creep一直对房间控制器进行能量传输:</strong><br>新建一个role.upgrader.js文件</p>
+<p><strong>所以我们必须保证有creep一直对房间控制器进行能量传输:</strong></p>
+<ol>
+<li><p>新建一个role.upgrader.js文件</p>
 <pre><code>//role.upgrader.js
-
 const roleUpgrader = {
-  /** @param {Creep} creep **/
+/** @param {Creep} creep **/
+run: function (creep) {
 
-  run: function (creep) {
+ //如果creep的能量没满，关闭升级指令
+ if (creep.memory.upgrading &amp;&amp; creep.store[RESOURCE_ENERGY] == 0) {
+   creep.memory.upgrading = false;
+ }
 
-    //如果creep的能量没满，关闭升级指令
-    if (creep.memory.upgrading &amp;&amp; creep.store[RESOURCE_ENERGY] == 0) {
-      creep.memory.upgrading = false;
-    }
+ //如果creep的能量满了，打开升级指令
+ if (!creep.memory.upgrading &amp;&amp; creep.store.getFreeCapacity() == 0) {
+   creep.memory.upgrading = true;
+ }
 
-    //如果creep的能量满了，打开升级指令
-    if (!creep.memory.upgrading &amp;&amp; creep.store.getFreeCapacity() == 0) {
-      creep.memory.upgrading = true;
-    }
+ //如果升级指令存在，对控制器进行升级，如果不在控制器范围内，移动过去
+ if (creep.memory.upgrading) {
+   if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+     creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: &#39;#ffffff&#39; } });
+   }
+ }
 
-    //如果升级指令存在，对控制器进行升级，如果不在控制器范围内，移动过去
-    if (creep.memory.upgrading) {
-      if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: &#39;#ffffff&#39; } });
-      }
-    }
-
-    //如果升级指令不存在，找到能量矿进行采集
-    else {
-      var sources = creep.room.find(FIND_SOURCES);
-      if (sources) {
-        if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-          creep.moveTo(sources[1]);
-        }
-      }
-    }
-  }
+ //如果升级指令不存在，找到能量矿进行采集
+ else {
+   var sources = creep.room.find(FIND_SOURCES);
+   if (sources) {
+     if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
+       creep.moveTo(sources[1]);
+     }
+   }
+ }
 }
-module.exports = roleUpgrader;</code></pre><p><strong>在main.js中进行导入:</strong></p>
+}
+module.exports = roleUpgrader;</code></pre></li>
+<li><p>在main.js中进行导入:</p>
 <pre><code>//main.js
-
 const roleHarvester = require(&#39;role.harvester&#39;);
-
 //导入我们写好的upgrader模块
 const roleUpgrader = require(&#39;role.upgrader&#39;);
-
 module.exports.loop = function () {
+//在所有creep中查询记忆为harvester的creep单位
+ var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
+//在所有creep中查询记忆为upgrader的creep单位
+ var upgraders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;upgrader&#39;);
+//如果记忆为upgrader的creep单位个人小于1，那就说明没人升级控制器，自动生成一个
 
-  //在所有creep中查询记忆为harvester的creep单位
-
-    var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
-
-  //在所有creep中查询记忆为upgrader的creep单位
-
-    var upgraders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;upgrader&#39;);
-
-  //如果记忆为upgrader的creep单位个人小于1，那就说明没人升级控制器，自动生成一个
-
-    if (upgraders.length &lt; 1) {
-      var newName = &#39;Upgrader&#39; + Game.time
-      Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
-        { memory: { role: &#39;upgrader&#39; } });
-    }
-
-  //遍历所有creep，根据memory进行任务分配
-
-    for (var name in Game.creeps) {
-      var creep = Game.creeps[name];
-      if (creep.memory.role == &#39;harvester&#39;) {
-        roleHarvester.collect(creep);
-      }
-
-      if(creep.memory.role == &#39;upgrader&#39;){
-        roleUpgrader.run(creep);
-      }
-    }
-  }</code></pre><h3 id="建造creep"><a href="#建造creep" class="headerlink" title="建造creep"></a>建造creep</h3><p>现在我们已经有负责挖矿和升级控制器的creep了，但是我建造别的建筑物还需要别的creep,新建一个role.builder.js：</p>
+ if (upgraders.length &lt; 1) {
+   var newName = &#39;Upgrader&#39; + Game.time
+   Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
+     { memory: { role: &#39;upgrader&#39; } });
+ }
+//遍历所有creep，根据memory进行任务分配
+ for (var name in Game.creeps) {
+   var creep = Game.creeps[name];
+   if (creep.memory.role == &#39;harvester&#39;) {
+     roleHarvester.collect(creep);
+   } 
+   if(creep.memory.role == &#39;upgrader&#39;){
+     roleUpgrader.run(creep);
+   }
+ }
+}</code></pre></li>
+</ol>
+<h3 id="建造creep"><a href="#建造creep" class="headerlink" title="建造creep"></a>建造creep</h3><ol>
+<li><p>现在我们已经有负责挖矿和升级控制器的creep了，但是我建造别的建筑物还需要别的creep,新建一个role.builder.js：</p>
 <pre><code>//role.builder.js
-
 const roleBuilder = {
-  /** @param {Creep} creep **/
-  run: function (creep) {
-    if (creep.memory.building &amp;&amp; creep.store[RESOURCE_ENERGY] == 0) {
-      creep.memory.building = false;
-    }
-    if (!creep.memory.building &amp;&amp; creep.store.getFreeCapacity() == 0) {
-      creep.memory.building = true;
-    }
-
-    //满能量的时候进行建造任务
-    if (creep.memory.building) {
-      var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-      if (targets.length) {
-        if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-          creep.moveTo(targets[0], { visualizePathStyle: { stroke: &#39;#ffffff&#39; } });
-        }
-      }
-    }
-    else {
-      var sources = creep.room.find(FIND_SOURCES);
-      if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(sources[0], { visualizePathStyle: { stroke: &#39;#ffaa00&#39; }     });
-      }
-    }
-
-  }
+/** @param {Creep} creep **/
+run: function (creep) {
+ if (creep.memory.building &amp;&amp; creep.store[RESOURCE_ENERGY] == 0) {
+   creep.memory.building = false;
+ }
+ if (!creep.memory.building &amp;&amp; creep.store.getFreeCapacity() == 0) {
+   creep.memory.building = true;
+ }
+ //满能量的时候进行建造任务
+ if (creep.memory.building) {
+   var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+   if (targets.length) {
+     if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+       creep.moveTo(targets[0], { visualizePathStyle: { stroke: &#39;#ffffff&#39; } });
+     }
+   }
+ }
+ else {
+   var sources = creep.room.find(FIND_SOURCES);
+   if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+     creep.moveTo(sources[0], { visualizePathStyle: { stroke: &#39;#ffaa00&#39; }     });
+   }
+ }
 }
-
-module.exports = roleBuilder;</code></pre><p><strong>然后在main.js里导入:</strong></p>
+}
+module.exports = roleBuilder;</code></pre></li>
+<li><p>然后在main.js里导入:</p>
 <pre><code>//main.js
-
 const roleHarvester = require(&#39;role.harvester&#39;);
 const roleUpgrader = require(&#39;role.upgrader&#39;);
-
 //导入我们写好的builder模块
 const roleBuilder = require(&#39;role.builder&#39;);
-
 module.exports.loop = function () {
-
-  //在所有creep中查询记忆为harvester的creep单位
-
-    var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
-
-  //在所有creep中查询记忆为upgrader的creep单位
-
-    var upgraders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;upgrader&#39;);
-
-  //在所有creep中查询记忆为builder的creep单位
-
-    var builders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;builder&#39;);
-
-  //如果记忆为builder的creep单位个人小于1，那就说明没人建造，自动生成一个
-
-    if (builders.length &lt; 1) {
-      var newName = &#39;Builder&#39; + Game.time
-      Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
-        { memory: { role: &#39;builder&#39; } });
-    }
-
-  //遍历所有creep，根据memory进行任务分配
-
-    for (var name in Game.creeps) {
-      var creep = Game.creeps[name];
-      if (creep.memory.role == &#39;harvester&#39;) {
-        roleHarvester.collect(creep);
-      }
-
-      if(creep.memory.role == &#39;upgrader&#39;){
-        roleUpgrader.run(creep);
-      }
-
-      if(creep.memory.role == &#39;builder&#39;){
-        roleBuilder.run(creep);
-      }
-    }
-  }</code></pre><p>那么到这里，我们就有自动采矿、建造、升级的creep了，当它们死亡后，我们的基地也就会自动生产一个新的来代替，简单的自动化基地就完成了~</p>
+//在所有creep中查询记忆为harvester的creep单位
+ var harvesters = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;harvester&#39;);
+//在所有creep中查询记忆为upgrader的creep单位
+ var upgraders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;upgrader&#39;);
+//在所有creep中查询记忆为builder的creep单位
+ var builders = _.filter(Game.creeps, (creep) =&gt; creep.memory.role == &#39;builder&#39;);
+//如果记忆为builder的creep单位个人小于1，那就说明没人建造，自动生成一个
+ if (builders.length &lt; 1) {
+   var newName = &#39;Builder&#39; + Game.time
+   Game.spawns[&#39;Spawn1&#39;].spawnCreep([WORK, CARRY, CARRY, MOVE], newName,
+     { memory: { role: &#39;builder&#39; } });
+ }
+//遍历所有creep，根据memory进行任务分配
+ for (var name in Game.creeps) {
+   var creep = Game.creeps[name];
+   if (creep.memory.role == &#39;harvester&#39;) {
+     roleHarvester.collect(creep);
+   }
+   if(creep.memory.role == &#39;upgrader&#39;){
+     roleUpgrader.run(creep);
+   }
+   if(creep.memory.role == &#39;builder&#39;){
+     roleBuilder.run(creep);
+   }
+ }
+}</code></pre></li>
+</ol>
+<p>那么到这里，我们就有自动采矿、建造、升级的creep了，当它们死亡后，我们的基地也就会自动生产一个新的来代替，简单的自动化基地就完成了~</p>
 </div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
     clientID: '007c2e64322ff31b60e9',
     clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
