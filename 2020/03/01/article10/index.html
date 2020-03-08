@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="ZH-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="author" content="琉花"><meta name="copyright" content="琉花"><meta name="og:image" content="/images/avatar.png"><meta name="og:type" content="website"><meta name="og:site_name" content="琉花"><meta name="og:url" content="kikyoluka.cn"><meta name="og：title" content="琉花"><meta name="theme-color" content="#b854d4" /><title>琉花</title><link rel="shortcut icon" href="/images/favicon.jpg" type="image/x-icon"><link rel="stylesheet" href="/css/index.css?version=2.0.0"><link rel="stylesheet" href="/font/fontello.css?version=2.0.0"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira+Mono|Noto+Serif+SC&amp;amp;display=swap"><link rel="canonical" href="//kikyoluka.cn"><link rel="dns-prefetch" href="//cdn.jsdelivr.net"><link rel="stylesheet" href="/lib/gitalk/gitalk.min.css"><script src="/lib/gitalk/gitalk.min.js"></script><meta name="generator" content="Hexo 4.2.0"></head><body><div class="layout"><header><div class="header"><div class="mobile-bg" style="background-image:url(/images/mobile.png);"></div><h1 class="title">琉花</h1><h2 class="subtitle">行至朝雾里 坠入暮云间</h2><nav class="menu"><a class="menu-item pjax-main-link" href="/"><li><i class="icon-index"></i><span>首页</span></li></a><a class="menu-item pjax-main-link" href="/archives/"><li><i class="icon-archives"></i><span>归档</span></li></a><a class="menu-item pjax-main-link" href="/categories/"><li><i class="icon-categories"></i><span>分类</span></li></a><a class="menu-item pjax-main-link" href="/tags/"><li><i class="icon-tags"></i><span>标签</span></li></a><a class="menu-item pjax-main-link" href="/books/"><li><i class="icon-books"></i><span>书单</span></li></a><a class="menu-item pjax-main-link" href="/inspirations/"><li><i class="icon-inspiration"></i><span>灵感</span></li></a><a class="menu-item pjax-main-link" href="/friends/"><li><i class="icon-friends"></i><span>友链</span></li></a><a class="menu-item pjax-main-link" href="/about/"><li><i class="icon-about"></i><span>关于</span></li></a></nav></div></header><main><div class="main-wrapper"></div><div class="pjax-main-page"><div class="post"><article class="post-article"><div class="post-header"><img class="default-image" src="/images/postDefaultImage%20.png" style="opacity:0;"/><img class="post-image" src="https://i.loli.net/2020/03/08/nRDimdTa8PAu64M.png"/><div class="post-head"><div class="post-title-wrapper"><h1 class="post-title">常用Git指令备忘录</h1><span class="post-image-source">pixiv</span></div><div class="post-meta"><span class="post-date"><i class="icon-calendar"></i><span class="date timeago" datetime="2020-03-01T02:10:10.000Z"></span></span><span class="post-hot"><i class="icon-fire"></i><span class="leancloud_visitors" id="/2020/03/01/article10/" data-flag-title="常用Git指令备忘录">热度<span class="leancloud-visitors-count">0</span>℃</span></span><span class="post-tags"><i class="icon-tag"></i><span class="tag">记事本</span></span><span class="post-categories"><i class="icon-bookmark-empty"></i><span class="category">清单</span></span></div></div></div><div class="post-content"><div class="markdown"><h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h1 id="开工"><a href="#开工" class="headerlink" title="开工"></a>开工</h1><p>git init 初始化目录<br>git pull 从仓库更新最新源码</p>
+<h1 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h1><p>git add. 将修改的文件加入暂存区<br>git commit -m 将文件提交到分支<br>git push 推送代码</p>
+<h1 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h1><p>git status 可以看到当前仓库的情况<br>git log 可以看到提交的历史记录<br>git log –pretty=oneline 可以将其压缩成一行显示<br>git reflog 可以查看所有分支的所有操作记录 包括被删掉的commit （git log看不到被删除的commit）<br>git diff 可以查看到当前修改的内容<br>如果git status提醒你有文件被修改了 可以通过git diff查看修改内容</p>
+<h1 id="回到过去"><a href="#回到过去" class="headerlink" title="回到过去"></a>回到过去</h1><p>git reset –hard HEAD^ 回到上一个commit<br>git reset –hard HEAD^ 回到上上个commit<br>git reset –hard xxxxxxx 回到指定id的commit (7位数 git log 前七位)</p>
+<h1 id="开枝散叶"><a href="#开枝散叶" class="headerlink" title="开枝散叶"></a>开枝散叶</h1><p>git checkout -b name 创建并切换到新的分支<br>git checkout -b branch-name origin/branch-name 在本地和远程建立对应分支<br>git branch –set-upstream branch-name origin/branch-name 将本地分支和远程分支相关联<br>git branch 可以看到分支情况<br>git branch -d name 可以删除一个分支<br>git branch -D name 可以删除一个没被合并过的分支</p>
+<h1 id="合二为一"><a href="#合二为一" class="headerlink" title="合二为一"></a>合二为一</h1><p>git merge 合并分支<br>默认的merge是fast forward,合并就看不出来曾经做过合并<br>可以使用 –no-ff参数普通合并,合并后会有一个commit显示<br>git merge -m “” –no-ff</p>
+<h1 id="垃圾站-amp-急救箱"><a href="#垃圾站-amp-急救箱" class="headerlink" title="垃圾站 &amp; 急救箱"></a>垃圾站 &amp; 急救箱</h1><p>git checkout — file 可以丢弃工作区的内容 使文件回到暂存区或分支的状态<br>git checkout — file 也可以防止不小心删除 从代码库里重新拉回来<br>git rm name 删除文件后需要commit同步到版本库</p>
+<h1 id="远程推送"><a href="#远程推送" class="headerlink" title="远程推送"></a>远程推送</h1><p>git remote add origin git@server-name:path/repo-name.git 关联一个远程的仓库<br>demo: git remote add origin <a href="mailto:git@github.com">git@github.com</a>:hyejeongdd/learngit.git</p>
+<p>git push -u origin master 第一次将本地master推送<br>git push origin master 以后推送</p>
+<h2 id="指令大全"><a href="#指令大全" class="headerlink" title="指令大全"></a>指令大全</h2><h1 id="新建代码库"><a href="#新建代码库" class="headerlink" title="新建代码库"></a>新建代码库</h1><ol>
+<li><p>在当前目录新建一个Git代码库</p>
+<pre><code>$ git init</code></pre></li>
+<li><p>新建一个目录，将其初始化为Git代码库</p>
+<pre><code>$ git init [your-project-name]</code></pre></li>
+<li><p>下载项目</p>
+<pre><code>$ git clone [url]</code></pre></li>
+</ol>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）</p>
+<ol>
+<li><p>显示当前的git配置</p>
+<pre><code>$ git config --list</code></pre></li>
+<li><p>编辑Git配置文件</p>
+<pre><code>$ git config -e [--global]</code></pre></li>
+<li><p>设置提交代码时的用户信息</p>
+<pre><code>$ git config [--global] user.name &quot;[your name]&quot;
+$ git config [--global] user.email &quot;[your email address]&quot;</code></pre></li>
+</ol>
+<h1 id="增加-删除文件"><a href="#增加-删除文件" class="headerlink" title="增加 / 删除文件"></a>增加 / 删除文件</h1><ol>
+<li><p>添加指定文件到暂存区</p>
+<pre><code>$ git add [file1] [file2] ...</code></pre></li>
+<li><p>添加指定目录到暂存区，包括子目录</p>
+<pre><code>$ git add [dir]</code></pre></li>
+<li><p>添加当前目录的所有文件到暂存区</p>
+<pre><code>$ git add .
+$ git add all</code></pre></li>
+<li><p>对于同一个文件的多处变化，可以实现分次提交</p>
+<pre><code>$ git add -p</code></pre></li>
+<li><p>删除工作区文件，并且将这次删除放入暂存区</p>
+<pre><code>$ git rm [file1] [file2] ...</code></pre></li>
+<li><p>停止追踪指定文件，但该文件会保留在工作区</p>
+<pre><code>$ git rm --cached [file]</code></pre></li>
+<li><p>改名文件，并且将这个改名放入暂存区</p>
+<pre><code>$ git mv [file-original] [file-renamed]</code></pre></li>
+</ol>
+<h1 id="代码提交"><a href="#代码提交" class="headerlink" title="代码提交"></a>代码提交</h1><ol>
+<li><p>提交暂存区到仓库区</p>
+<pre><code>$ git commit -m [message]</code></pre></li>
+<li><p>提交暂存区的指定文件到仓库区</p>
+<pre><code>$ git commit [file1] [file2] ... -m [message]</code></pre></li>
+<li><p>提交工作区自上次commit之后的变化，直接到仓库区</p>
+<pre><code>$ git commit -a</code></pre></li>
+<li><p>提交时显示所有diff信息</p>
+<pre><code>$ git commit -v</code></pre></li>
+<li><p>如果代码没有任何新变化，则用来改写上一次commit的提交信息</p>
+<pre><code>$ git commit --amend -m [message]</code></pre></li>
+<li><p>重做上一次commit，并包括指定文件的新变化</p>
+<pre><code>$ git commit --amend [file1] [file2] ...</code></pre></li>
+</ol>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><ol>
+<li><p>列出所有本地分支</p>
+<pre><code>$ git branch</code></pre></li>
+<li><p>列出所有远程分支</p>
+<pre><code>$ git branch -r</code></pre></li>
+<li><p>列出所有本地分支和远程分支</p>
+<pre><code>$ git branch -a</code></pre></li>
+<li><p>新建一个分支，但依然停留在当前分支</p>
+<pre><code>$ git branch [branch-name]</code></pre></li>
+<li><p>新建一个分支，并切换到该分支</p>
+<pre><code>$ git checkout -b [branch]</code></pre></li>
+<li><p>新建一个分支，指向指定commit</p>
+<pre><code>$ git branch [branch] [commit]</code></pre></li>
+<li><p>新建一个分支，与指定的远程分支建立追踪关系</p>
+<pre><code>$ git branch --track [branch] [remote-branch]</code></pre></li>
+<li><p>切换到指定分支，并更新工作区</p>
+<pre><code>$ git checkout [branch-name]</code></pre></li>
+<li><p>切换到上一个分支</p>
+<pre><code>$ git checkout -</code></pre></li>
+<li><p>建立追踪关系，在现有分支与指定的远程分支之间</p>
+<pre><code>$ git branch --set-upstream [branch] [remote-branch]</code></pre></li>
+<li><p>合并指定分支到当前分支</p>
+<pre><code>$ git merge [branch]</code></pre></li>
+<li><p>选择一个commit，合并进当前分支</p>
+<pre><code>$ git cherry-pick [commit]</code></pre></li>
+<li><p>删除分支</p>
+<pre><code>$ git branch -d [branch-name]</code></pre></li>
+<li><p>删除远程分支</p>
+<pre><code>$ git push origin --delete [branch-name]
+$ git branch -dr [remote/branch]</code></pre></li>
+</ol>
+<h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><ol>
+<li><p>列出所有tag</p>
+<pre><code>$ git tag</code></pre></li>
+<li><p>复制代码新建一个tag在当前commit</p>
+<pre><code>$ git tag [tag]</code></pre></li>
+<li><p>复制代码新建一个tag在指定commit</p>
+<pre><code>$ git tag [tag] [commit]</code></pre></li>
+<li><p>复制代码删除本地tag</p>
+<pre><code>$ git tag -d [tag]</code></pre></li>
+<li><p>复制代码删除远程tag</p>
+<pre><code>$ git push origin :refs/tags/[tagName]</code></pre></li>
+<li><p>复制代码查看tag信息</p>
+<pre><code>$ git show [tag]</code></pre></li>
+<li><p>复制代码提交指定tag</p>
+<pre><code>$ git push [remote] [tag]</code></pre></li>
+<li><p>复制代码提交所有tag</p>
+<pre><code>$ git push [remote] --tags</code></pre></li>
+<li><p>复制代码新建一个分支，指向某个tag</p>
+<pre><code>$ git checkout -b [branch] [tag]</code></pre></li>
+</ol>
+<h1 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h1><ol>
+<li><p>显示有变更的文件</p>
+<pre><code>$ git status</code></pre></li>
+<li><p>复制代码显示当前分支的版本历史</p>
+<pre><code>$ git log</code></pre></li>
+<li><p>复制代码显示commit历史，以及每次commit发生变更的文件</p>
+<pre><code>$ git log --stat</code></pre></li>
+<li><p>复制代码搜索提交历史，根据关键词</p>
+<pre><code>$ git log -S [keyword]</code></pre></li>
+<li><p>复制代码显示某个commit之后的所有变动，每个commit占据一行</p>
+<pre><code>$ git log [tag] HEAD --pretty=format:%s</code></pre></li>
+<li><p>复制代码显示某个commit之后的所有变动，其”提交说明”必须符合搜索条件</p>
+<pre><code>$ git log [tag] HEAD --grep feature</code></pre></li>
+<li><p>复制代码显示某个文件的版本历史，包括文件改名</p>
+<pre><code>$ git log --follow [file]
+$ git whatchanged [file]</code></pre></li>
+<li><p>复制代码显示指定文件相关的每一次diff</p>
+<pre><code>$ git log -p [file]</code></pre></li>
+<li><p>复制代码显示过去5次提交</p>
+<pre><code>$ git log -5 --pretty --oneline</code></pre></li>
+<li><p>复制代码显示所有提交过的用户，按提交次数排序</p>
+<pre><code>$ git shortlog -sn</code></pre></li>
+<li><p>复制代码显示指定文件是什么人在什么时间修改过</p>
+<pre><code>$ git blame [file]</code></pre></li>
+<li><p>复制代码显示暂存区和工作区的差异</p>
+<pre><code>$ git diff</code></pre></li>
+<li><p>复制代码显示暂存区和上一个commit的差异</p>
+<pre><code>$ git diff --cached [file]</code></pre></li>
+<li><p>复制代码显示工作区与当前分支最新commit之间的差异</p>
+<pre><code>$ git diff HEAD</code></pre></li>
+<li><p>复制代码显示两次提交之间的差异</p>
+<pre><code>$ git diff [first-branch]...[second-branch]</code></pre></li>
+<li><p>复制代码显示今天你写了多少行代码</p>
+<pre><code>$ git diff --shortstat &quot;@{0 day ago}&quot;</code></pre></li>
+<li><p>复制代码显示某次提交的元数据和内容变化</p>
+<pre><code>$ git show [commit]</code></pre></li>
+<li><p>复制代码显示某次提交发生变化的文件</p>
+<pre><code>$ git show --name-only [commit]</code></pre></li>
+<li><p>复制代码显示某次提交时，某个文件的内容</p>
+<pre><code>$ git show [commit]:[filename]</code></pre></li>
+<li><p>复制代码显示当前分支的最近几次提交</p>
+<pre><code>$ git reflog</code></pre></li>
+</ol>
+<h1 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h1><ol>
+<li><p>下载远程仓库的所有变动</p>
+<pre><code>$ git fetch [remote]</code></pre></li>
+<li><p>复制代码显示所有远程仓库</p>
+<pre><code>$ git remote -v</code></pre></li>
+<li><p>复制代码显示某个远程仓库的信息</p>
+<pre><code>$ git remote show [remote]</code></pre></li>
+<li><p>复制代码增加一个新的远程仓库，并命名</p>
+<pre><code>$ git remote add [shortname] [url]</code></pre></li>
+<li><p>复制代码取回远程仓库的变化，并与本地分支合并</p>
+<pre><code>$ git pull [remote] [branch]</code></pre></li>
+<li><p>复制代码上传本地指定分支到远程仓库</p>
+<pre><code>$ git push [remote] [branch]</code></pre></li>
+<li><p>复制代码强行推送当前分支到远程仓库，即使有冲突</p>
+<pre><code>$ git push [remote] --force</code></pre></li>
+<li><p>复制代码推送所有分支到远程仓库</p>
+<pre><code>$ git push [remote] --all</code></pre></li>
+</ol>
+<h1 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h1><ol>
+<li><p>恢复暂存区的指定文件到工作区</p>
+<pre><code>$ git checkout [file]</code></pre></li>
+<li><p>复制代码恢复某个commit的指定文件到暂存区和工作区</p>
+<pre><code>$ git checkout [commit] [file]</code></pre></li>
+<li><p>复制代码恢复暂存区的所有文件到工作区</p>
+<pre><code>$ git checkout .</code></pre></li>
+<li><p>复制代码重置暂存区的指定文件，与上一次commit保持一致，但工作区不变</p>
+<pre><code>$ git reset [file]</code></pre></li>
+<li><p>复制代码重置暂存区与工作区，与上一次commit保持一致</p>
+<pre><code>$ git reset --hard</code></pre></li>
+<li><p>复制代码重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变</p>
+<pre><code>$ git reset [commit]</code></pre></li>
+<li><p>复制代码重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致</p>
+<pre><code>$ git reset --hard [commit]</code></pre></li>
+<li><p>复制代码重置当前HEAD为指定commit，但保持暂存区和工作区不变</p>
+<pre><code>$ git reset --keep [commit]</code></pre></li>
+<li><p>复制代码新建一个commit，用来撤销指定commit，后者的所有变化都将被前者抵消，并且应用到当前分支</p>
+<pre><code>$ git revert [commit]</code></pre></li>
+<li><p>复制代码暂时将未提交的变化移除，稍后再移入</p>
+<pre><code>$ git stash
+$ git stash pop</code></pre></li>
+</ol>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ol>
+<li>生成一个可供发布的压缩包<pre><code>$ git archive</code></pre></li>
+</ol>
+<h3 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h3><p><img src="https://blog.bytebye.com/upload/2018/12/410bqhgvc4hhpqoc4l7qvkn0t6.png" alt="img"></p>
+<p>最后友情附赠国外网友制作的Git Cheat Sheet，建议打印出来备用：<a href='https://gitee.com/liaoxuefeng/learn-java/raw/master/teach/git-cheatsheet.pdf' target="_blank" rel="noopener">Git Cheat Sheet</a></p>
+</div></div></article></div><div id="gitalk"></div><script>var gitalk = new Gitalk({
+    clientID: '007c2e64322ff31b60e9',
+    clientSecret: '889ab344b75944a36ccb79dff864e51063bfa5bd',
+    id: '2020-03-01 10:10:10',
+    repo: 'comments',
+    owner: 'kikyoluka',
+    admin: 'kikyoluka'
+})
+gitalk.render('gitalk')</script></div><div class="pjax-main-loading loading"><img class="loading-image" src="/images/loading.gif"></div></main><footer><div class="footer site-info"><p><i class="icon-copyright"></i><span>2018</span>&minus;<span>2020</span>&nbsp;&nbsp;&nbsp;<i class="icon-heart"></i>&nbsp;&nbsp;<span>琉花</span></p><p><a href="https://github.com/sanshiliuxiao/hexo-theme-aurora.git" target="_blank">hexo-theme-Aurora</a>&nbsp; | &nbsp;行至朝雾里 坠入暮云间</p></div></footer></div><div class="bg"><div class="pc-dynamic-bg"><span class="image" data-image="/images/theme/1.jpg"></span><span class="image" data-image="/images/theme/2.jpg"></span><span class="image" data-image="/images/theme/3.jpg"></span><span class="image" data-image="/images/theme/4.jpg"></span><span class="image" data-image="/images/theme/5.jpg"></span><span class="image" data-image="/images/theme/6.jpg"></span><span class="image" data-image="/images/theme/7.jpg"></span><span class="image" data-image="/images/theme/8.jpg"></span><span class="image" data-image="/images/theme/9.jpg"></span></div></div><span class="back-to-top"></span><div class="leancloud"><script src="/js/third-party/leancloud.min.js?version=2.0.0"></script><div class="leancloud-app-id" leancloud-app-id="LjOwR4ELEqbauKvtQbwq5TUw-MdYXbMMI"></div><div class="leancloud-app-key" leancloud-app-key="BOSFJ49ohbGctgn4zvJE9VN6"></div><div class="leancloud-app-hot"></div><div class="leancloud-app-visitor"></div></div><link rel="stylesheet" href="/lib/APlayer/APlayer.min.css"><script src="/lib/APlayer/APlayer.min.js"></script><div id="aplayer"></div><script>let list = JSON.parse('[{"name":"Julia，Train，Slow Down","artist":"Whale Fall","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/JuliaTrainSlowDown.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/5.jpg"},{"name":"The Wellwisher","artist":"Halves","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/TheWellwisher.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/4.jpg"},{"name":"SadSexy","artist":"Dirty Three","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/music/SadSexy .mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/cover/1.jpg"},{"name":"Riverrun","artist":"Stubborn","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/music/Riverrun.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.1/blog/cover/3.jpg"},{"name":"Hortur","artist":"Picastro","url":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/music/Hortur.mp3","cover":"https://cdn.jsdelivr.net/gh/kikyoluka/cdn@2.0/blog/cover/2.jpg"}]')
+  const ap = new APlayer({
+      container: document.getElementById('aplayer'),
+      theme: '#b28fce',
+      audio: list,
+      fixed: true,
+      volume: 1
+  });
+  ap.list.show()
+</script><script src="/js/third-party/jquery.min.js?version=2.0.0"></script><script src="/js/third-party/isMobile.min.js?version=2.0.0"></script><script src="/js/third-party/timeago.min.js?version=2.0.0"></script><script src="/js/third-party/pjax.min.js?version=2.0.0"></script><script src="/js/third-party/zooming.min.js?version=2.0.0"></script><script src="/js/third-party/backstretch.min.js?version=2.0.0"></script><script src="/js/highlight.min.js?version=2.0.0"></script><script src="/js/index.js?version=2.0.0"></script></body></html>
